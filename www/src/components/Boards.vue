@@ -13,18 +13,18 @@
               <h4 class="modal-title">Register</h4>
             </div>
             <div class="modal-body">
-              <form @submit.prevent="userRegister(event)">
+              <form @submit.prevent="userRegister">
                 <div class="formgroup">
                   <label for="regemail">Email:</label>
-                  <input class="form-control" name="regemail" placeholder="john@email.com" type="text">
+                  <input class="form-control" name="regemail" placeholder="john@email.com" type="text" v-model="register.email" >
                 </div>
                 <div class="formgroup">
                   <label for="regName">Username:</label>
-                  <input class="form-control" name="regName" placeholder="Username" type="text">
+                  <input class="form-control" name="regName" placeholder="Username" type="text" v-model="register.username" >
                 </div>
                 <div class="formgroup">
                   <label for="regpass">Password:</label>
-                  <input class="form-control" name="regpass" placeholder="****" type="text">
+                  <input class="form-control" name="regpass" placeholder="****" type="text" v-model="register.password" >
                 </div>
                 <button type="submit">Submit</button>
               </form>
@@ -45,14 +45,14 @@
               <h4 class="modal-title">Login</h4>
             </div>
             <div class="modal-body">
-              <form @submit.prevent="userLogin(event)">
+              <form @submit.prevent="userLogin" >
                 <div class="formgroup">
                   <label for="logemail">Email:</label>
-                  <input class="form-control" name="logemail" placeholder="john@email.com" type="text">
+                  <input class="form-control" name="logemail" placeholder="john@email.com" type="text" v-model="login.email" >
                 </div>
                 <div class="formgroup">
                   <label for="logpass">Password:</label>
-                  <input class="form-control" name="logpass" placeholder="****" type="text">
+                  <input class="form-control" name="logpass" placeholder="****" type="text" v-model="login.password" >
                 </div>
                 <button type="submit">Submit</button>
               </form>
@@ -78,6 +78,12 @@
 
 <script>
   export default {
+    data() {
+      return {
+        register: {}, 
+        login: {}
+      }
+    },
     name: 'boards',
     mounted() {
       this.$store.dispatch('getBoards')
@@ -96,6 +102,13 @@
       },
       removeBoard(board) {
         this.$store.dispatch('removeBoard', board)
+      },
+      userLogin(){
+        this.$store.dispatch('userLogin', this.login)
+      },
+      userRegister(){
+        debugger
+        this.$store.dispatch('userRegister', this.register)
       }
     }
   }
