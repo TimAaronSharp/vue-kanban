@@ -1,6 +1,7 @@
 import axios from 'axios'
 import vue from 'vue'
 import vuex from 'vuex'
+import router from '../router'
 
 let api = axios.create({
   baseURL: 'http://localhost:3000/api/',
@@ -19,9 +20,14 @@ var store = new vuex.Store({
   state: {
     boards: [{ name: 'This is total rubbish' }],
     activeBoard: {},
-    error: {}
+    error: {},
+    user: {}
   },
   mutations: {
+    setUser(state, data) {
+      state.user = data
+      console.log('setUser: ', data)
+    },
     setBoards(state, data) {
       state.boards = data
     },
@@ -32,6 +38,7 @@ var store = new vuex.Store({
   actions: {
     //when writing your auth routes (login, logout, register) be sure to use auth instead of api for the posts
 
+    //--------BOARDS-----------
     getBoards({ commit, dispatch }) {
       api('boards')
         .then(res => {
@@ -69,17 +76,19 @@ var store = new vuex.Store({
           commit('handleError', err)
         })
     },
+    //^^^^^^^^^^^^^^BOARDS^^^^^^^^^^^^^^^^^
+    //-----------------LOGIN/REGISTER/LOGOUT-----------
     userLogin({ commit, dispatch }, login) {
       auth.post('login', login)
         .then(res => {
-          dispatch('getBoards')
+          // console.log(res)
+          router.push({ name: 'Boards' })
         })
-        .catch(err => {
-          commit('handleError', err)
+        .catch(() => {
+          router.push({ name: "Login" })
         })
     },
     userRegister({ commit, dispatch }, register) {
-      debugger
       auth.post('register', register)
         .then(res => {
           console.log(res)
@@ -89,11 +98,34 @@ var store = new vuex.Store({
           commit('handleError', err)
         })
     },
+    authenticate({ commit, dispatch }) {
+      debugger
+      auth('authenticate')
+        .then(res => {
+          console.log(res)
+          commit('setUser', res.data.data)
+          router.push({ name: 'Boards' })
+        })
+        .catch(() => {
+          router.push({ name: "Login" })
+        })
+    },
+    logout({ commit, dispatch }, user) {
+      debugger
+      auth.delete('logout')
+        .then(res => {
+          console.log(res)
+        })
+        .catch(err => {
+          console.log(err)
+          res.status(401).send({ Error: err })
+        })
+    },
+    //^^^^^^^^^^^^^^USER/REGISTER/LOGOUT^^^^^^^^^^^
     handleError({ commit, dispatch }, err) {
       commit('handleError', err)
     }
   }
-
 })
 
 
