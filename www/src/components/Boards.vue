@@ -20,7 +20,7 @@
                 </div>
                 <div class="formgroup">
                   <label for="regName">Username:</label>
-                  <input class="form-control" name="regName" placeholder="Username" type="text" v-model="register.username" >
+                  <input class="form-control" name="regName" placeholder="Username" type="text" v-model="register.name" >
                 </div>
                 <div class="formgroup">
                   <label for="regpass">Password:</label>

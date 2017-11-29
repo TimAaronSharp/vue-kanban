@@ -70,7 +70,7 @@ var store = new vuex.Store({
         })
     },
     userLogin({ commit, dispatch }, login) {
-      api.post('login', login)
+      auth.post('login', login)
         .then(res => {
           dispatch('getBoards')
         })
@@ -80,9 +80,10 @@ var store = new vuex.Store({
     },
     userRegister({ commit, dispatch }, register) {
       debugger
-      api.post('register', register)
+      auth.post('register', register)
         .then(res => {
-          dispatch('getBoards')
+          console.log(res)
+          //dispatch('getBoards')
         })
         .catch(err => {
           commit('handleError', err)

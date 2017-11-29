@@ -3,14 +3,13 @@ let env = {
 	NODE_ENV: 'development',
 	PORT: 3000,
 	DBPROTOCOL: 'mongodb',
-	DBUSERNAME: 'student',
-	DBPASSWORD: 'CodeWorksStudent',
-	DBHOST: 'ds056789.mlab.com:56789',
-	DBNAME: 'codeworks',
+	DBUSERNAME: 'kanban5',
+	DBPASSWORD: 'kanban',
+	DBHOST: 'ds030829.mlab.com:30829',
+	DBNAME: 'kanban1',
 	SERVERNAME: 'dev-server'
 }
 
-// MAPS env TO ACTUAL ENVIRONMENT
 Object.keys(env).forEach(v => {
 	process.env[v] = process.env[v] || env[v]
 }) 
