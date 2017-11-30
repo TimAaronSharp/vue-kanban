@@ -27,6 +27,7 @@ var store = new vuex.Store({
     setUser(state, data) {
       state.user = data
       console.log('setUser: ', data)
+      console.log("User: ", state.user)
     },
     setBoards(state, data) {
       state.boards = data
@@ -40,8 +41,7 @@ var store = new vuex.Store({
 
     //--------BOARDS-----------
     getBoards({ commit, dispatch }) {
-      debugger
-      api('boards')
+      api('userboards')
         .then(res => {
           commit('setBoards', res.data.data)
         })
@@ -80,9 +80,11 @@ var store = new vuex.Store({
     //^^^^^^^^^^^^^^BOARDS^^^^^^^^^^^^^^^^^
     //-----------------LOGIN/REGISTER/LOGOUT-----------
     userLogin({ commit, dispatch }, login) {
+      debugger
       auth.post('login', login)
         .then(res => {
-          // console.log(res)
+          console.log(res)
+          commit('setUser', res.data.data)
           router.push({ name: 'Boards' })
         })
         .catch(() => {
@@ -105,11 +107,13 @@ var store = new vuex.Store({
 
       auth('authenticate')
         .then(res => {
-          if (!user) {
-            router.push({ name: "Login" })
-          }
+          debugger
+          // if (!res.data.data) {
+          //   router.push({ name: "Login" })
+          // }
           console.log(res)
           commit('setUser', res.data.data)
+          debugger
           router.push({ name: 'Boards' })
         })
         .catch(() => {
@@ -120,7 +124,9 @@ var store = new vuex.Store({
       auth.delete('logout')
         .then(res => {
           console.log(res)
+          debugger
           dispatch('authenticate')
+          // router.push({ name: 'Login' })
         })
         .catch(err => {
           console.log(err)
