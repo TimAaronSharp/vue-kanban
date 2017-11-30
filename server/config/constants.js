@@ -20,6 +20,11 @@ const models = {
     endpoint: 'users',
     preventDefaultApi: true,
     useCustomRoutes: true
+  },
+  task: {
+    name: 'Task',
+    endpoint: 'tasks',
+    useCustomRoutes: true
   }
 }
 
