@@ -20,6 +20,7 @@ var store = new vuex.Store({
   state: {
     boards: [{ name: 'This is total rubbish' }],
     activeBoard: {},
+    activeLists: [],
     error: {},
     user: {}
   },
@@ -35,9 +36,13 @@ var store = new vuex.Store({
     handleError(state, err) {
       state.error = err
     },
-    setActiveBoard(state, board){
+    setActiveBoard(state, board) {
       debugger
       state.activeBoard = board
+    },
+    setActiveLists(state, lists) {
+      debugger
+      state.activeLists = lists
     }
   },
   actions: {
@@ -82,6 +87,19 @@ var store = new vuex.Store({
         })
     },
     //^^^^^^^^^^^^^^BOARDS^^^^^^^^^^^^^^^^^
+
+    //-------------LISTS-------------------
+    getLists({ commit, dispatch }, id) {
+      api('boards/' + id + '/lists')
+        .then(res => {
+          debugger
+          commit('setActiveLists', res.data.data)
+        })
+        .catch(err => {
+          commit('handleError', err)
+        })
+    },
+    //^^^^^^^^^^^^^LISTS^^^^^^^^^^^^^^^^^^
     //-----------------LOGIN/REGISTER/LOGOUT-----------
     userLogin({ commit, dispatch }, login) {
       auth.post('login', login)

@@ -1,8 +1,8 @@
-import Users from '../models/user'
-import Boards from '../models/board'
-import Tasks from '../models/task'
-import Lists from '../models/list'
-import Comments from '../models/comment'
+var Users = require('../models/user')
+var Boards = require( '../models/board')
+var Tasks = require('../models/task')
+var Lists = require('../models/list')
+var Comments = require('../models/comment')
 
 
 
@@ -35,6 +35,7 @@ module.exports = {
                 .then(lists => {
                     res.send(handleResponse(action, lists))
                 }).catch(error => {
+                    console.log(error)
                     return next(handleResponse(action, null, error))
                 })
         }
@@ -51,7 +52,8 @@ module.exports = {
                     return next(handleResponse(action, null, error))
                 })
         }
-    },getCommentsByTaskId: {
+    },
+    getCommentsByTaskId: {
         path: '/tasks/:taskId/comments',
         reqType: 'get',
         method(req, res, next) {
