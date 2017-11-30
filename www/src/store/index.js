@@ -59,7 +59,6 @@ var store = new vuex.Store({
         })
     },
     createBoard({ commit, dispatch }, board) {
-      debugger
       api.post('boards/', board)
         .then(res => {
           dispatch('getBoards')
@@ -80,7 +79,6 @@ var store = new vuex.Store({
     //^^^^^^^^^^^^^^BOARDS^^^^^^^^^^^^^^^^^
     //-----------------LOGIN/REGISTER/LOGOUT-----------
     userLogin({ commit, dispatch }, login) {
-      debugger
       auth.post('login', login)
         .then(res => {
           console.log(res)
@@ -107,13 +105,11 @@ var store = new vuex.Store({
 
       auth('authenticate')
         .then(res => {
-          debugger
           // if (!res.data.data) {
           //   router.push({ name: "Login" })
           // }
           console.log(res)
           commit('setUser', res.data.data)
-          debugger
           router.push({ name: 'Boards' })
         })
         .catch(() => {
@@ -124,7 +120,6 @@ var store = new vuex.Store({
       auth.delete('logout')
         .then(res => {
           console.log(res)
-          debugger
           dispatch('authenticate')
           // router.push({ name: 'Login' })
         })
