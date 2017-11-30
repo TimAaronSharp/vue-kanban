@@ -34,6 +34,10 @@ var store = new vuex.Store({
     },
     handleError(state, err) {
       state.error = err
+    },
+    setActiveBoard(state, board){
+      debugger
+      state.activeBoard = board
     }
   },
   actions: {
@@ -50,6 +54,7 @@ var store = new vuex.Store({
         })
     },
     getBoard({ commit, dispatch }, id) {
+      debugger
       api('boards/' + id)
         .then(res => {
           commit('setActiveBoard', res.data.data)
