@@ -21,6 +21,7 @@ var store = new vuex.Store({
     boards: [{ name: 'This is total rubbish' }],
     activeBoard: {},
     activeLists: [],
+    activeTasks: [],
     error: {},
     user: {}
   },
@@ -37,12 +38,16 @@ var store = new vuex.Store({
       state.error = err
     },
     setActiveBoard(state, board) {
-      debugger
+
       state.activeBoard = board
     },
     setActiveLists(state, lists) {
-      debugger
+
       state.activeLists = lists
+    },
+    setActiveTasks(state, tasks) {
+
+      state.activeTasks = tasks
     }
   },
   actions: {
@@ -59,10 +64,12 @@ var store = new vuex.Store({
         })
     },
     getBoard({ commit, dispatch }, id) {
-      debugger
+
       api('boards/' + id)
         .then(res => {
-          commit('setActiveBoard', res.data.data)
+          debugger
+          commit('setActiveBoard', res.data.data) 
+          dispatch('getLists', res.data.data._id)
         })
         .catch(err => {
           commit('handleError', err)
@@ -92,7 +99,6 @@ var store = new vuex.Store({
     getLists({ commit, dispatch }, id) {
       api('boards/' + id + '/lists')
         .then(res => {
-          debugger
           commit('setActiveLists', res.data.data)
         })
         .catch(err => {
@@ -100,6 +106,18 @@ var store = new vuex.Store({
         })
     },
     //^^^^^^^^^^^^^LISTS^^^^^^^^^^^^^^^^^^
+    //-------------TASKS-----------------
+    getTasks({ commit, dispatch }, id) {
+      api('lists/' + id._id + '/tasks')
+        .then(res => {
+          debugger
+          commit('setActiveTasks', res.data.data)
+        })
+        .catch(err => {
+          commit('handleError', err)
+        })
+    },
+    //^^^^^^^^^^^^^TASKS^^^^^^^^^^^^^^^^^
     //-----------------LOGIN/REGISTER/LOGOUT-----------
     userLogin({ commit, dispatch }, login) {
       auth.post('login', login)

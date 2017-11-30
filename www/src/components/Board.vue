@@ -1,41 +1,44 @@
 <template>
-  <div> 
-     {{board.name}}
-     <button @click="listTest"></button>
-     <div class="drawList" v-for="list in lists">
-       <list :name="list.name" :description="list.description">
+  <div>
+    {{board.name}}
+    <div class="drawList" v-for="list in lists">
+      <list :name="list.name" :description="list.description">
 
-       </list>
+      </list>
 
-     </div>
+    </div>
 
   </div>
-  
+
 </template>
 
 <script>
-import lists from './List'
-export default {
-  name: 'board',
-  mounted(){
-    this.$store.dispatch('getBoard',this.$route.params.id)
-  },
-  methods:{
-    listTest(){
-      this.$store.dispatch('getLists', this.$route.params.id)
-    }
-  },
-  computed:{
-    board(){
-      return this.$store.state.activeBoard
+  import list from './List'
+  export default {
+    data() {
+      return {
+
+      }
     },
-    components:{
-      lists
+    name: 'board',
+    mounted() {
+      this.$store.dispatch('getBoard', this.$route.params.id)
+    },
+    methods: {
+    },
+    computed: {
+      board() {
+        return this.$store.state.activeBoard
+      },
+      lists() {
+        return this.$store.state.activeLists
+      }
+    },
+    components: {
+      list
     }
   }
-}
 </script>
 
 <style scoped>
-
 </style>

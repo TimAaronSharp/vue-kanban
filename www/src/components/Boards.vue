@@ -18,7 +18,8 @@
     data() {
       return {
         register: {}, 
-        login: {}
+        login: {},
+        board: {}
       }
     },
     name: 'boards',
@@ -32,13 +33,9 @@
     },
     methods: {
       createBoard() {
-        this.$store.dispatch('createBoard', {
-          name: 'Testing board creation',
-          description: 'blarg'
-        })
+        this.$store.dispatch('createBoard', )
       },
       userLogout(){
-        debugger
         this.$store.dispatch('logout', this.$store.state.user._id)
       },
       removeBoard(board) {
