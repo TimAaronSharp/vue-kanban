@@ -21,7 +21,7 @@ var store = new vuex.Store({
     boards: [{ name: 'This is total rubbish' }],
     activeBoard: {},
     activeLists: [],
-    activeTasks: [],
+    activeTasks: {},
     error: {},
     user: {}
   },
@@ -45,9 +45,9 @@ var store = new vuex.Store({
 
       state.activeLists = lists
     },
-    setActiveTasks(state, tasks) {
-
-      state.activeTasks = tasks
+    setActiveTasks(state, payload) {
+      debugger
+    vue.set(state.activeTasks, payload.listId, payload.task)
     }
   },
   actions: {
@@ -67,7 +67,6 @@ var store = new vuex.Store({
 
       api('boards/' + id)
         .then(res => {
-          debugger
           commit('setActiveBoard', res.data.data) 
           dispatch('getLists', res.data.data._id)
         })
@@ -109,9 +108,9 @@ var store = new vuex.Store({
     //-------------TASKS-----------------
     getTasks({ commit, dispatch }, payload) {
       debugger
-      api('lists/' + payload.id + '/tasks')
+      api('lists/' + payload.listId + '/tasks')
         .then(res => {
-          commit('setActiveTasks', res.data.data)
+          commit('setActiveTasks',  {task:res.data.data, listId:payload.listId})
         })
         .catch(err => {
           commit('handleError', err)

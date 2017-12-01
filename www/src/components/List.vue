@@ -24,11 +24,11 @@
             }
         },
         name: 'list',
-        props: ['name', 'description','id'],
+        props: ['name', 'description','listId'],
         mounted() {
             debugger
             // this.$store.dispatch('getLists', this.$route.params.id)
-            this.$store.dispatch('getTasks', { id: this.id })
+            this.$store.dispatch('getTasks', { listId: this.listId })
         },
         computed: {
             tasks() {
