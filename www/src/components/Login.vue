@@ -3,7 +3,7 @@
 
     <div class='login'>
        <div class="header container">
-           <h1>Login:</h1>
+           <h1>Kanban Login:</h1>
        </div>
        
         <form @submit.prevent="userLogin" class="form-horizontal" role="form">
@@ -143,9 +143,11 @@
     .header{
         display: flex;
         justify-content: flex-start;
+    
     }
     .loginbox{
         background-color: #b8dcffa2;
+        padding: .5rem;
     }
 </style>
 
