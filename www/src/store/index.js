@@ -121,6 +121,7 @@ var store = new vuex.Store({
     //^^^^^^^^^^^^^LISTS^^^^^^^^^^^^^^^^^^
     //-------------TASKS-----------------
     getTasks({ commit, dispatch }, payload) {
+      
       api('boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks')
         .then(res => {
           commit('setActiveTasks', { task: res.data.data, listId: payload.listId })

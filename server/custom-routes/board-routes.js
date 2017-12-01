@@ -41,7 +41,7 @@ module.exports = {
         }
     },
     getTasksByListId: {
-        path: 'boards/:boardId/lists/:listId/tasks',
+        path: '/boards/:boardId/lists/:listId/tasks',
         reqType: 'get',
         method(req, res, next) {
             let action = 'Find Tasks By ListId'
@@ -54,7 +54,7 @@ module.exports = {
         }
     },
     getCommentsByTaskId: {
-        path: 'boards/:boardId/lists/:listId/tasks/:taskId/comments',
+        path: '/boards/:boardId/lists/:listId/tasks/:taskId/comments',
         reqType: 'get',
         method(req, res, next) {
             let action = 'Find Comments By TaskId'

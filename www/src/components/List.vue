@@ -9,7 +9,7 @@
 
         <div class="task" v-for="(task, i) in tasks">
             <!-- <router-link :to="'/tasks/'+task._id">{{task.name}}</router-link> -->
-            <task :name="task.name" :description="task.description" :taskId="task._id" :listId="listId" :boardId="board._id"></task>
+            <task :name="task.name" :description="task.description" :taskId="task._id" :listId="listId" :boardId="boardId"></task>
         </div>
     </div>
 </template>

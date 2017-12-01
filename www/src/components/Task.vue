@@ -17,13 +17,13 @@
             }
         },
         name: 'task',
-        props: ['name', 'description', 'taskId', 'listId'],
+        props: ['name', 'description', 'taskId', 'listId', 'boardId'],
         mounted() {
             // this.$store.dispatch('getTasks', this.$route.params.id)
         },
         methods: {
             openComments() {
-                this.$store.dispatch('getComments', { taskId: this.taskId })
+                this.$store.dispatch('getComments', { taskId: this.taskId, listId: this.listId, boardId: this.boardId})
             }
         },
         computed: {
