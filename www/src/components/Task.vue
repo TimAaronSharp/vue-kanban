@@ -1,7 +1,10 @@
 <template>
     <div class="task">
-       <h3>{{name}}</h3> 
-       
+        <h3 class="open-comments" @click="openComments">{{name}}</h3>
+        <div class="the-comments" v-for="comment in comments">
+            <p>{{comment.description}}</p>
+        </div>
+
     </div>
 </template>
 
@@ -19,14 +22,24 @@
             // this.$store.dispatch('getTasks', this.$route.params.id)
         },
         methods: {
+            openComments() {
+                this.$store.dispatch('getComments', { taskId: this.taskId })
+            }
         },
         computed: {
             tasks() {
                 return this.$store.state.activeTasks
+            },
+            comments() {
+                return this.$store.state.activeComments[this.taskId]
             }
         },
     }
 </script>
 
 <style scoped>
+    .open-comments {
+        color: red;
+        cursor: pointer;
+    }
 </style>

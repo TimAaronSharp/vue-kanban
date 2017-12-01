@@ -1,5 +1,6 @@
 var models = require('../config/constants').models
 let mongoose = require('mongoose')
+var Comments = require('./comment')
 let ObjectId = mongoose.Schema.ObjectId
 
 var schema = new mongoose.Schema({
@@ -9,5 +10,10 @@ var schema = new mongoose.Schema({
     // Relations
     listId: { type: ObjectId, ref: models.list, required: true }
 });
+
+// schema.pre('remove', next => {
+//     Comments.remove({ taskId: this._id }).exec()
+//     next()
+// })
 
 module.exports = mongoose.model(models.task.name, schema);

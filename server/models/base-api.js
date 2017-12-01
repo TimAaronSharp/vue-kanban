@@ -47,7 +47,7 @@ function API(model, schema) {
 
     let model = new schema(req.body)
     model.creatorId = req.session.uid
-    
+
     model.save()
       .then(data => {
         return res.send(handleResponse(action, data))
@@ -82,6 +82,16 @@ function API(model, schema) {
       return next(handleResponse(action, null, { error: { message: 'Invalid request no id provided' } }))
     }
 
+    //   schema.findById(id).then(function (data) {
+    //     data.remove()
+    //     .then(function (data) {
+    //       return res.send(handleResponse(action, data))
+    //     })
+    //   })
+    //     .catch(error => {
+    //       return next(handleResponse(action, null, error))
+    //     })
+    // }
     schema.findOneAndRemove({ _id: id }).then(function (data) {
       return res.send(handleResponse(action, data))
     })

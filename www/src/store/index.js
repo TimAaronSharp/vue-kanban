@@ -22,6 +22,7 @@ var store = new vuex.Store({
     activeBoard: {},
     activeLists: [],
     activeTasks: {},
+    activeComments: {},
     error: {},
     user: {}
   },
@@ -46,8 +47,12 @@ var store = new vuex.Store({
       state.activeLists = lists
     },
     setActiveTasks(state, payload) {
-    vue.set(state.activeTasks, payload.listId, payload.task)
-    console.log(state.activeTasks)
+      vue.set(state.activeTasks, payload.listId, payload.task)
+      console.log('activeTasks: ', state.activeTasks)
+    },
+    setActiveComments(state, payload) {
+      vue.set(state.activeComments, payload.taskId, payload.comment)
+      console.log('activeComments: ', state.activeComments)
     }
   },
   actions: {
@@ -67,7 +72,7 @@ var store = new vuex.Store({
 
       api('boards/' + id)
         .then(res => {
-          commit('setActiveBoard', res.data.data) 
+          commit('setActiveBoard', res.data.data)
           dispatch('getLists', res.data.data._id)
         })
         .catch(err => {
@@ -109,13 +114,24 @@ var store = new vuex.Store({
     getTasks({ commit, dispatch }, payload) {
       api('lists/' + payload.listId + '/tasks')
         .then(res => {
-          commit('setActiveTasks',  {task:res.data.data, listId:payload.listId})
+          commit('setActiveTasks', { task: res.data.data, listId: payload.listId })
         })
         .catch(err => {
           commit('handleError', err)
         })
     },
     //^^^^^^^^^^^^^TASKS^^^^^^^^^^^^^^^^^
+    //------------COMMENTS--------------
+    getComments({ commit, dispatch }, payload) {
+      api('tasks/' + payload.taskId + '/comments')
+        .then(res => {
+          commit('setActiveComments', { comment: res.data.data, taskId: payload.taskId })
+        })
+        .catch(err => {
+          commit('handleError', err)
+        })
+    },
+    //^^^^^^^^^^^COMMENTS^^^^^^^^^^^^^^
     //-----------------LOGIN/REGISTER/LOGOUT-----------
     userLogin({ commit, dispatch }, login) {
       auth.post('login', login)
