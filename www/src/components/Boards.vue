@@ -55,4 +55,8 @@
 </script>
 
 <style scoped>
+  .header{
+    display: flex;
+    justify-content: flex-end
+  }
 </style>
