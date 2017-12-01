@@ -2,7 +2,7 @@
   <div>
     {{board.name}}
     <div class="drawList" v-for="list in lists">
-      <list :name="list.name" :description="list.description">
+      <list :name="list.name" :description="list.description":id="list._id">
 
       </list>
 

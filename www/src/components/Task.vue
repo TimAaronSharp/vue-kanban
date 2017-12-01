@@ -1,15 +1,7 @@
 <template>
     <div class="task">
-        {{task.name}}
-        <div class="drawList" v-for="task in tasks">
-            <list :name="task.name" :description="task.description">
-
-            </list>
-
-        </div>
-
+        {{name}}
     </div>
-
 </template>
 
 <script>

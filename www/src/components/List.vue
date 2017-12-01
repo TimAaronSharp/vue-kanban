@@ -1,10 +1,11 @@
 <template>
     <div>
-        <div class="list" v-for="list in lists">
-            
+        <div class="list">
+
             <h3>{{name}}</h3>
-            
-            <!-- <h5>{{id}}</h5> -->
+            <!-- <h5>{{description}}</h5> -->
+            <!-- <h5>{{_id}}</h5> -->
+
         </div>
 
         <div class="task" v-for="task in tasks">
@@ -23,11 +24,11 @@
             }
         },
         name: 'list',
-        props: ['name', 'description'],
+        props: ['name', 'description','id'],
         mounted() {
             debugger
             // this.$store.dispatch('getLists', this.$route.params.id)
-            // this.$store.dispatch('getTasks', this.list)
+            this.$store.dispatch('getTasks', { id: this.id })
         },
         computed: {
             tasks() {

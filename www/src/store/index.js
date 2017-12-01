@@ -107,10 +107,10 @@ var store = new vuex.Store({
     },
     //^^^^^^^^^^^^^LISTS^^^^^^^^^^^^^^^^^^
     //-------------TASKS-----------------
-    getTasks({ commit, dispatch }, id) {
-      api('lists/' + id._id + '/tasks')
+    getTasks({ commit, dispatch }, payload) {
+      debugger
+      api('lists/' + payload.id + '/tasks')
         .then(res => {
-          debugger
           commit('setActiveTasks', res.data.data)
         })
         .catch(err => {
