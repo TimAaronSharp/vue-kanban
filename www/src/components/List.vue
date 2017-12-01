@@ -4,11 +4,12 @@
             <h3>{{name}}</h3>
             <!-- <h5>{{description}}</h5> -->
             <!-- <h5>{{_id}}</h5> -->
+            
         </div>
 
         <div class="task" v-for="(task, i) in tasks">
             <!-- <router-link :to="'/tasks/'+task._id">{{task.name}}</router-link> -->
-            <task :name="task.name" :description="task.description" :taskId="task._id"></task>
+            <task :name="task.name" :description="task.description" :taskId="task._id" :listId="listId" :boardId="board._id"></task>
         </div>
     </div>
 </template>
@@ -17,15 +18,21 @@
     import task from './Task'
     export default {
         data() {
-            return {
-
+            return {    
+                list:{}
             }
         },
         name: 'list',
-        props: ['name', 'description', 'listId'],
+        props: ['name', 'description', 'listId', 'boardId'],
         mounted() {
             // this.$store.dispatch('getLists', this.$route.params.id)
-            this.$store.dispatch('getTasks', { listId: this.listId })
+            this.$store.dispatch('getTasks', { listId: this.listId, boardId: this.boardId })
+        },
+        methods:{
+            creatList(){
+                this.$store.dispatch()
+            }
+
         },
         computed: {
             tasks() {

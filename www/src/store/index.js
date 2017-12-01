@@ -109,10 +109,19 @@ var store = new vuex.Store({
           commit('handleError', err)
         })
     },
+    createList({ commit, dispatch }, list) {
+      api.post('boards/', list)
+        .then(res => {
+          dispatch('getLists')
+        })
+        .catch(err => {
+          commit('handleError', err)
+        })
+    },
     //^^^^^^^^^^^^^LISTS^^^^^^^^^^^^^^^^^^
     //-------------TASKS-----------------
     getTasks({ commit, dispatch }, payload) {
-      api('lists/' + payload.listId + '/tasks')
+      api('boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks')
         .then(res => {
           commit('setActiveTasks', { task: res.data.data, listId: payload.listId })
         })
@@ -123,7 +132,7 @@ var store = new vuex.Store({
     //^^^^^^^^^^^^^TASKS^^^^^^^^^^^^^^^^^
     //------------COMMENTS--------------
     getComments({ commit, dispatch }, payload) {
-      api('tasks/' + payload.taskId + '/comments')
+      api('boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/' + payload.taskId + '/comments')
         .then(res => {
           commit('setActiveComments', { comment: res.data.data, taskId: payload.taskId })
         })

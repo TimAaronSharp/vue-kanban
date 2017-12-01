@@ -1,9 +1,17 @@
 <template>
   <div>
-    
 
-<button @click="userLogout">Logout</button>
-    <button @click="createBoard">Add Board</button>
+
+    <button @click="userLogout">Logout</button>
+    <form @submit.prevent="createBoard">
+      <label for="name">Name</label>
+      <input class="form-control" type="text" name="name" v-model="board.name">
+      <label for="description">description</label>
+      <input class="form-control" type="text" name="description" v-model="board.description">
+      <div>
+        <button type="submit">Add Board</button>
+      </div>
+    </form>
     <ul>
       <li v-for="board in boards">
         <router-link :to="'/boards/'+board._id">{{board.name}}</router-link>
@@ -17,7 +25,7 @@
   export default {
     data() {
       return {
-        register: {}, 
+        register: {},
         login: {},
         board: {}
       }
@@ -33,9 +41,10 @@
     },
     methods: {
       createBoard() {
-        this.$store.dispatch('createBoard', )
+        
+        this.$store.dispatch('createBoard', this.board)
       },
-      userLogout(){
+      userLogout() {
         this.$store.dispatch('logout', this.$store.state.user._id)
       },
       removeBoard(board) {
