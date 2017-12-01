@@ -46,8 +46,8 @@ var store = new vuex.Store({
       state.activeLists = lists
     },
     setActiveTasks(state, payload) {
-      debugger
     vue.set(state.activeTasks, payload.listId, payload.task)
+    console.log(state.activeTasks)
     }
   },
   actions: {
@@ -107,7 +107,6 @@ var store = new vuex.Store({
     //^^^^^^^^^^^^^LISTS^^^^^^^^^^^^^^^^^^
     //-------------TASKS-----------------
     getTasks({ commit, dispatch }, payload) {
-      debugger
       api('lists/' + payload.listId + '/tasks')
         .then(res => {
           commit('setActiveTasks',  {task:res.data.data, listId:payload.listId})

@@ -1,6 +1,7 @@
 <template>
     <div class="task">
-        {{name}}
+       <h3>{{name}}</h3> 
+       
     </div>
 </template>
 
@@ -13,9 +14,9 @@
             }
         },
         name: 'task',
-        props: ['name', 'description'],
+        props: ['name', 'description', 'taskId', 'listId'],
         mounted() {
-            //this.$store.dispatch('getTasks', this.$route.params.id)
+            // this.$store.dispatch('getTasks', this.$route.params.id)
         },
         methods: {
         },
