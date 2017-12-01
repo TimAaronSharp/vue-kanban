@@ -1,8 +1,10 @@
 <template>
   <div>
+    <h2>Boards</h2>
+    <div class="header container">
+      <button class="btn-danger" @click="userLogout">Logout</button>
+    </div>
     
-
-<button @click="userLogout">Logout</button>
     <button @click="createBoard">Add Board</button>
     <ul>
       <li v-for="board in boards">
@@ -46,4 +48,8 @@
 </script>
 
 <style scoped>
+  .header{
+    display: flex;
+    justify-content: flex-end
+  }
 </style>

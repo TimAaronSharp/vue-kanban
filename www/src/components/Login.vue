@@ -1,5 +1,11 @@
 <template>
+<div class="loginbox">
+
     <div class='login'>
+       <div class="header container">
+           <h1>Login:</h1>
+       </div>
+       
         <form @submit.prevent="userLogin" class="form-horizontal" role="form">
             <div class="form-group">
                 <label class="col-sm-2 control-label" for="inputEmail3">Email</label>
@@ -86,7 +92,7 @@
         </div> -->
     </div>
 
-
+</div>
 </template>
 
 
@@ -133,6 +139,13 @@
 
     .modal-body .form-horizontal .col-sm-offset-2 {
         margin-left: 15px;
+    }
+    .header{
+        display: flex;
+        justify-content: flex-start;
+    }
+    .loginbox{
+        background-color: #b8dcffa2;
     }
 </style>
 
