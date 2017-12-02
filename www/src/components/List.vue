@@ -6,20 +6,6 @@
                 <i class="fa fa-trash fa-md" @click="removeList(listId)"></i>
             </div>
             <div class="list-body">
-<<<<<<< HEAD
-                <h3>List: {{name}}</h3>
-                <p>List Description: {{description}}</p>
-                <div class="createTask">
-                    <form @submit="createTask">
-                        <div class="form-group">
-                            <label for="name">Task:</label>
-                            <input name="name" type="text" size="10" v-model="createTask.name" placeholder="task">
-                            <button class="btn-success btn-xs" type="submit">Add</button>
-                        </div>
-                    </form>
-                </div>
-
-=======
                 <h3>{{name}}</h3>
                 <div v-if="description">
                     <p>Description: {{description}}</p>
@@ -33,7 +19,6 @@
                         <button type="submit" class="btn btn-success">add new task</button>
                     </form>
                 </div>
->>>>>>> 83a3042114bc2449787964f8f5b5006d68143c10
             </div>
             <div class="list-footer">
                 <div class="task" v-for="task in tasks">
