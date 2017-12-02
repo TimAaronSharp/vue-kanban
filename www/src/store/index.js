@@ -147,7 +147,7 @@ var store = new vuex.Store({
         })
     },
     createTask({ commit, dispatch }, payload) {
-      debugger
+      
       payload.newTask.listId = payload.listId
       api.post('tasks/', payload.newTask)
         .then(res => {
