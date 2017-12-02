@@ -2,7 +2,7 @@
     <div>
 
 
-        <div class="task" v-for="task in tasks">
+        <div class="task"></div>
             <p class="open-comments" @click="openComments">Task: {{name}}</p>
             <div class="the-comments" v-for="comment in comments">
                 <p>{{comment.description}}</p>
@@ -54,7 +54,6 @@
                 this.$store.dispatch('moveTaskToDifferentList', { taskId: this.taskId, listId: this.listId, boardId: this.boardId })
             },
             newComment() {
-
                 this.$store.dispatch('newComment', { taskId: this.taskId, description: this.newComment.description })
             }
         },

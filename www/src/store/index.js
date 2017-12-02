@@ -146,12 +146,20 @@ var store = new vuex.Store({
           commit('handleError', err)
         })
     },
+    // createTask({ commit, dispatch }, payload) {
+    //   // payload.newTask.listId = payload.listId
+    //   api.post('tasks', payload.newTask)
+    //     .then(res => {
+    //       dispatch('getTasks', {listId:payload.listId, boardId:payload.boardId })
+    //     })
+    //     .catch(err => {
+    //       commit('handleError', err)
+    //     })
+    // },
     createTask({ commit, dispatch }, payload) {
-      
-      // payload.newTask.listId = payload.listId
-      api.post('tasks', payload.newTask)
+      api.post('/tasks', payload)
         .then(res => {
-          dispatch('getTasks', {listId:payload.listId, boardId:payload.boardId })
+          dispatch('getTasks')
         })
         .catch(err => {
           commit('handleError', err)
@@ -173,6 +181,7 @@ var store = new vuex.Store({
     // 'boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/' + payload.taskId + 
     //------------COMMENTS--------------//
     getComments({ commit, dispatch }, payload) {
+      debugger
       api('/comments')
         .then(res => {
           commit('setActiveComments', { comment: res.data.data, taskId: payload.taskId })
@@ -182,6 +191,7 @@ var store = new vuex.Store({
         })
     },
     newComment({ commit, dispatch }, payload) {
+      debugger
       api.post('/comments', payload)
         .then(res => {
           dispatch('getComments')

@@ -10,15 +10,20 @@
                 <div v-if="description">
                     <p>Description: {{description}}</p>
                 </div>
-                <div class="create-task">
-                    <form @submit.prevent="createTask">
-                        <label for="name">name</label>
-                        <input class="form-control" type="text" name="name" v-model="createTask.name" required>
-                        <label for="description">description</label>
-                        <input class="form-control" type="text" name="description" v-model="createTask.description">
-                        <button type="submit" class="btn btn-success">add new task</button>
-                    </form>
-                </div>
+                <button class="btn-info btn-xs margin" @click="seen = !seen">New Task</button>
+                <div class="create-task" v-if="seen">
+                        <form @submit.prevent="createTask">
+                           <div class="form-group">
+                               <label for="name">name</label>
+                               <input class="inline"  size="15" type="text" name="name" placeholder="name" v-model="createTask.name" required >
+                            </div>
+                            <div class="form-group">
+                                <label for="description">description</label>
+                                <input class="inline"  size="15" type="text" name="description" placeholder="description" v-model="createTask.description">
+                                <button type="submit" class="btn-xs btn-success">Add</button>
+                            </div>
+                        </form>
+                    </div>
             </div>
             <div class="list-footer">
                 <div class="task" v-for="task in tasks">
@@ -27,7 +32,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 
 </template>
@@ -38,7 +42,8 @@
         data() {
             return {
                 list: {},
-                task: {}
+                task: {},
+                seen: false
             }
         },
         name: 'list',
@@ -51,7 +56,8 @@
             removeList(listId) {
                 this.$store.dispatch('removeList', { listId: listId, boardId: this.boardId })
             },
-            createTask(listId) {
+            createTask() {
+                debugger
                 this.$store.dispatch('createTask', { listId: this.listId, boardId: this.boardId, name: this.createTask.name, description: this.createTask.description })
             }
         },
@@ -83,10 +89,8 @@
         float: right;
     }
 
-    .create-task {
-        position: absolute;
-        bottom: 10px;
-        left:25%;
+    .inline{
+        display: inline;
     }
 
     /* .task{
@@ -97,5 +101,8 @@
     .list-header {
         /* background-color: #9796965e; */
         padding: 1rem;
+    }
+    .margin{
+        margin: 1rem;
     }
 </style>
