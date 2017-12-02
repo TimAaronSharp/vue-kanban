@@ -43,7 +43,11 @@
         data() {
             return {
                 list: {},
+<<<<<<< HEAD
                 seen: false
+=======
+                newTask: {}
+>>>>>>> d32181439a32be4fbd6ad43151c6638144f326c6
             }
         },
         name: 'list',
@@ -57,8 +61,14 @@
                 this.$store.dispatch('removeList', { listId: listId, boardId: this.boardId })
 
             },
+<<<<<<< HEAD
             newComment(listId) {
                 this.$store.dispatch('newComment', { listId: listId, boardId: this.boardId })
+=======
+            createTask(){
+                debugger
+                this.$store.dispatch('createTask', {listId: this.listId, boardId: this.boardId, newTask: this.newTask})
+>>>>>>> d32181439a32be4fbd6ad43151c6638144f326c6
             }
         },
         computed: {
@@ -88,7 +98,14 @@
     .fa-trash {
         float: right;
     }
+<<<<<<< HEAD
 
+=======
+    .create-task{
+        position: absolute;
+        bottom: 5px;
+    }
+>>>>>>> d32181439a32be4fbd6ad43151c6638144f326c6
     /* .task{
         background-color: #2b2a2ab7; 
         color: white;
