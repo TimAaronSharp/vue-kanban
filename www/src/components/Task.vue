@@ -19,7 +19,7 @@
                 <h4>New Comment</h4>
             </div> -->
             <div class="newComment">
-                <form @submit="newComment">
+                <form @submit.prevent="newComment">
                     <div class="form-group">
                         <label for="description">Comment:</label>
                         <input name="description" type="text" size="10" v-model="comment.description">

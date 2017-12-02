@@ -193,9 +193,9 @@ var store = new vuex.Store({
         })
     },
     newComment({ commit, dispatch }, payload) {
-      debugger
       api.post('/comments', payload.comment)
-        .then(res => {
+      .then(res => {
+        debugger
           dispatch('getComments', payload.comment)
         })
         .catch(err => {
