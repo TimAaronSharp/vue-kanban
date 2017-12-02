@@ -15,11 +15,11 @@
                         <form @submit.prevent="createTask">
                            <div class="form-group">
                                <label for="name">name</label>
-                               <input class="inline"  size="15" type="text" name="name" placeholder="name" v-model="createTask.name" required >
+                               <input class="inline"  size="15" type="text" name="name" placeholder="name" v-model="task.name" required >
                             </div>
                             <div class="form-group">
                                 <label for="description">description</label>
-                                <input class="inline"  size="15" type="text" name="description" placeholder="description" v-model="createTask.description">
+                                <input class="inline"  size="15" type="text" name="description" placeholder="description" v-model="task.description">
                                 <button type="submit" class="btn-xs btn-success">Add</button>
                             </div>
                         </form>
@@ -42,7 +42,9 @@
         data() {
             return {
                 list: {},
-                task: {},
+                task: {
+                    listId: this.listId, 
+                    boardId: this.boardId},
                 seen: false
             }
         },
@@ -58,7 +60,7 @@
             },
             createTask() {
                 debugger
-                this.$store.dispatch('createTask', { listId: this.listId, boardId: this.boardId, name: this.createTask.name, description: this.createTask.description })
+                this.$store.dispatch('createTask', { task: this.task })
             }
         },
         computed: {

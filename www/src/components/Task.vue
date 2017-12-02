@@ -22,7 +22,7 @@
                 <form @submit="newComment">
                     <div class="form-group">
                         <label for="description">Comment:</label>
-                        <input name="description" type="text" size="10" v-model="newComment.description">
+                        <input name="description" type="text" size="10" v-model="comment.description">
                         <button class="btn-success btn-xs" type="submit">Add</button>
                     </div>
                 </form>
@@ -39,7 +39,11 @@
         data() {
             return {
                 seen: false,
-                comment: {}
+                comment: {
+                    boardId: this.boardId,
+                    listId: this.listId,
+                    taskId: this.taskId
+                }
             }
         },
         name: 'task',
@@ -55,7 +59,7 @@
                 this.$store.dispatch('moveTaskToDifferentList', { taskId: this.taskId, listId: this.listId, boardId: this.boardId })
             },
             newComment() {
-                this.$store.dispatch('newComment', { taskId: this.taskId, description: this.newComment.description })
+                this.$store.dispatch('newComment', { comment: this.comment })
             }
         },
         computed: {
