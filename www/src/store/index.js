@@ -146,6 +146,17 @@ var store = new vuex.Store({
           commit('handleError', err)
         })
     },
+    createTask({ commit, dispatch }, payload) {
+      debugger
+      payload.newTask.listId = payload.listId
+      api.post('tasks/', payload.newTask)
+        .then(res => {
+          dispatch('getTasks', {listId:payload.listId, boardId:payload.boardId })
+        })
+        .catch(err => {
+          commit('handleError', err)
+        })
+    },
     moveTaskToDifferentList({ commit, dispatch }, payload) {
       api.put('tasks/' + payload.taskId, payload.listId)
         .then(res => {
