@@ -3,7 +3,7 @@
 
     <h1>Boards</h1>
     <div class="header container">
-      <button class="btn-success">New Board</button>
+      <button @click="seen = !seen" class="btn-info">New Board</button>
       <button class="btn-danger" @click="userLogout">Logout</button>
     </div>
     <!-- <div class="boardHeader container">
@@ -12,23 +12,22 @@
 
       <div v-for="board in boards">
         <div class="board">
-          <router-link :to="'/boards/'+board._id">{{board.name}}</router-link>
-          <span class="remove" @click="removeBoard(board)">x</span>
+          <span class="font">Board: </span><router-link :to="'/boards/'+board._id">{{board.name}}</router-link><span class="remove" @click="removeBoard(board)">x</span>
         </div>
 
       </div>
 
     </div>
 
-    <div class="boardForm container">
+    <div v-if="seen" class="boardForm container">
 
       <form @submit.prevent="createBoard">
-        <label for="name">Name</label>
-        <input class="form-control" type="text" name="name" v-model="board.name" required>
-        <label for="description">description</label>
-        <input class="form-control" type="text" name="description" v-model="board.description">
-        <div>
-          <button type="submit">Add Board</button>
+        <label for="name">Name:</label>
+        <input class="form-control" placeholder="name" type="text" name="name" v-model="board.name" required>
+        <label for="description">Description:</label>
+        <input class="form-control" placeholder="description" type="text" name="description" v-model="board.description">
+        <div class="blacktext">
+          <button  class="btn-success margins" type="submit">Add Board</button>
         </div>
       </form>
     </div>
@@ -42,7 +41,8 @@
       return {
         register: {},
         login: {},
-        board: {}
+        board: {},
+        seen: false
       }
     },
     name: 'boards',
@@ -70,17 +70,23 @@
 </script>
 
 <style scoped>
+  
   .header {
     display: flex;
     justify-content: space-between
   }
-
+  .font{
+    font-size: 150%;
+    font-weight: bold;
+  }
   .boardForm {
     display: flex;
     max-width: 60rem;
     justify-content: center;
-    background-color: grey;
-
+    background-color: rgba(31, 30, 30, 0.575);
+    color: white;
+    border-radius: 25px;
+    padding: 1rem;
 
   }
 
@@ -91,11 +97,11 @@
 
   .boardList {
     margin: 5rem;
-    background-color: rgba(8, 8, 8, 0.452);
+    /* background-color: rgba(8, 8, 8, 0.452); */
   }
   .board{
     background-color:rgb(255, 255, 255);
-    color: white;
+    color: black;
     margin: 1rem;
     text-decoration: none;
     font-size: 110%;
@@ -103,5 +109,15 @@
   .remove{
     color: red;
     cursor: pointer;
+  }
+  a{
+    display: inline-block;
+    margin: 1rem;
+  }
+  .blacktext{
+    color: black;
+  }
+  .margins{
+    margin: .5rem;
   }
 </style>

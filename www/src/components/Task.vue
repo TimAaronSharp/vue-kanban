@@ -9,7 +9,26 @@
                 <option v-for="list in lists">{{list.name}}</option>
             </select>
         </div>  -->
+        <i class="fa fa-plus fa-md" @click="seen = !seen"></i>
+        <div class="commentForm" v-if="seen">
+            <div class="cformHead">
+                <h4>New Comment</h4>
+            </div>
+            <form @submit="newComment">
+                <div class="form-group">
+                    <label for="description">Comment:</label>
+                    <input name="description" type="text">
+                </div>
+                <div class="form-group">
+                    <button class="btn-success" type="submit">Add</button>
+                </div>
+
+            </form>
+
+        </div>
     </div>
+
+
 </template>
 
 <script>

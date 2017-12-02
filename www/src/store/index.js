@@ -171,7 +171,7 @@ var store = new vuex.Store({
         })
     },
     newComment({ commit, dispatch }, payload) {
-      api.post('comments/', payload)
+      api.post('/comments', payload)
         .then(res => {
           dispatch('getComments', payload.taskId)
         })
