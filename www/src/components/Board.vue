@@ -5,12 +5,12 @@
       <h2>{{board.description}}</h2>
     </div>
     <button class="btn-info" @click="seen = !seen">New List</button>
-    <div class="createNewList" v-if="seen">
-        <form @submit.prevent="creatList">
+    <div class="createList" v-if="seen">
+        <form @submit.prevent="createList">
           <label for="name">name</label>
-          <input type="text" name="name" v-model="newList.name" required>
+          <input type="text" name="name" v-model="createList.name" required>
           <label for="description">description</label>
-          <input type="text" name="description" v-model="newList.description">
+          <input type="text" name="description" v-model="createList.description">
           <button type="submit" class="btn btn-success btn-sm">add</button>
         </form>
       </div>
@@ -29,7 +29,7 @@
   export default {
     data() {
       return {
-        newList: {},
+        list: {},
         seen: false
       }
     },
@@ -38,9 +38,8 @@
       this.$store.dispatch('getBoard', { boardId: this.$route.params.id })
     },
     methods: {
-      creatList() {
-        this.$store.dispatch('createList', { name: this.newList.name, description: this.newList.description, boardId: this.$route.params.id })
-        this.newList = {}
+      createList() {
+        this.$store.dispatch('createList', { name: this.name, description: this.description, boardId: this.$route.params.id })
       }
     },
     computed: {

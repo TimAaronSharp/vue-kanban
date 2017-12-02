@@ -148,8 +148,8 @@ var store = new vuex.Store({
     },
     createTask({ commit, dispatch }, payload) {
       
-      payload.newTask.listId = payload.listId
-      api.post('tasks/', payload.newTask)
+      // payload.newTask.listId = payload.listId
+      api.post('tasks', payload.newTask)
         .then(res => {
           dispatch('getTasks', {listId:payload.listId, boardId:payload.boardId })
         })

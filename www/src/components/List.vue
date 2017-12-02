@@ -13,9 +13,9 @@
                 <div class="create-task">
                     <form @submit.prevent="createTask">
                         <label for="name">name</label>
-                        <input class="form-control" type="text" name="name" v-model="newTask.name" required>
+                        <input class="form-control" type="text" name="name" v-model="createTask.name" required>
                         <label for="description">description</label>
-                        <input class="form-control" type="text" name="description" v-model="newTask.description">
+                        <input class="form-control" type="text" name="description" v-model="createTask.description">
                         <button type="submit" class="btn btn-success">add new task</button>
                     </form>
                 </div>
@@ -33,7 +33,7 @@
 </template>
 
 <script>
-    import task from './Task'
+    import task from './task'
     export default {
         data() {
             return {
@@ -52,7 +52,7 @@
                 this.$store.dispatch('removeList', { listId: listId, boardId: this.boardId })
             },
             createTask(listId) {
-                this.$store.dispatch('createTask', { listId: this.listId, boardId: this.boardId, newTask: this.newTask })
+                this.$store.dispatch('createTask', { listId: this.listId, boardId: this.boardId, name: this.createTask.name, description: this.createTask.description })
             }
         },
         computed: {
