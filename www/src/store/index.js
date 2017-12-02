@@ -171,9 +171,9 @@ var store = new vuex.Store({
         })
     },
     newComment({ commit, dispatch }, payload) {
-      api.post('boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/' + payload.taskId + '/comments')
+      api.post('comments/', payload)
         .then(res => {
-          commit('getComments', { comment: res.data.data, taskId: payload.taskId })
+          dispatch('getComments', payload.taskId)
         })
         .catch(err => {
           commit('handleError', err)

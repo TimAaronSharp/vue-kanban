@@ -48,7 +48,7 @@
             }
         },
         name: 'list',
-        props: ['name', 'description', 'listId', 'boardId'],
+        props: ['name', 'description', 'listId', 'boardId','taskId'],
         mounted() {
             // this.$store.dispatch('getLists', this.$route.params.id)
             this.$store.dispatch('getTasks', { listId: this.listId, boardId: this.boardId })
@@ -58,10 +58,11 @@
                 this.$store.dispatch('removeList', { listId: listId, boardId: this.boardId })
 
             },
+            
             newComment(listId) {
-                this.$store.dispatch('newComment', { listId: listId, boardId: this.boardId })
+                this.$store.dispatch('newComment', { listId: listId, boardId: this.boardId, description: this.newComment.description, })
             },
-            createTask(){
+            createTask(listId){
                 debugger
                 this.$store.dispatch('createTask', {listId: this.listId, boardId: this.boardId, newTask: this.newTask})
             }
