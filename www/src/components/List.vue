@@ -61,14 +61,12 @@
                 this.$store.dispatch('removeList', { listId: listId, boardId: this.boardId })
 
             },
-<<<<<<< HEAD
             newComment(listId) {
                 this.$store.dispatch('newComment', { listId: listId, boardId: this.boardId })
-=======
+            },
             createTask(){
                 debugger
                 this.$store.dispatch('createTask', {listId: this.listId, boardId: this.boardId, newTask: this.newTask})
->>>>>>> d32181439a32be4fbd6ad43151c6638144f326c6
             }
         },
         computed: {
