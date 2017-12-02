@@ -2,32 +2,33 @@
     <div>
 
 
-        <div class="task"></div>
+        <div class="comments">
             <p class="open-comments" @click="openComments">Task: {{name}}</p>
             <div class="the-comments" v-for="comment in comments">
                 <p>{{comment.description}}</p>
             </div>
-            <!-- <div class="the-lists">
+        </div>
+        <!-- <div class="the-lists">
             <select @change="moveTaskToDifferentList">
                 <option v-for="list in lists">{{list.name}}</option>
             </select>
         </div>  -->
-            <i class="fa fa-plus fa-md" @click="seen = !seen"></i>
-            <div class="commentForm" v-if="seen">
-                <!-- <div class="cformHead">
+        <i class="fa fa-plus fa-md" @click="seen = !seen"></i>
+        <div class="commentForm" v-if="seen">
+            <!-- <div class="cformHead">
                 <h4>New Comment</h4>
             </div> -->
-                <div class="newComment">
-                    <form @submit="newComment">
-                        <div class="form-group">
-                            <label for="description">Comment:</label>
-                            <input name="description" type="text" size="10" v-model="newComment.description">
-                            <button class="btn-success btn-xs" type="submit">Add</button>
-                        </div>
-                    </form>
-                </div>
+            <div class="newComment">
+                <form @submit="newComment">
+                    <div class="form-group">
+                        <label for="description">Comment:</label>
+                        <input name="description" type="text" size="10" v-model="newComment.description">
+                        <button class="btn-success btn-xs" type="submit">Add</button>
+                    </div>
+                </form>
             </div>
         </div>
+    </div>
 
     </div>
 </template>
