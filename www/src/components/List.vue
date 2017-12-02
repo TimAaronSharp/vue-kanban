@@ -3,7 +3,27 @@
     <div>
         <div class="list">
             <div class=" list-header">
-                    <i class="fa fa-trash fa-md" @click="removeList(listId)"></i>
+                <i class="fa fa-plus fa-md" @click="seen = !seen"></i>
+                <i class="fa fa-trash fa-md" @click="removeList(listId)"></i>
+                <div class="commentForm" v-if="seen">
+                    <div class="cformHead">
+                        <h4>New Comment</h4>
+                    </div>
+                    <form @submit="newComment">
+                        <div class="form-group">
+                            <label for="description">Comment:</label>
+                            <input name="description" type="text">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit">Add</button>
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+            <div class="list-body">
                 <h3>List: {{name}}</h3>
                 <p>List Description: {{description}}</p>
             </div>
@@ -22,7 +42,8 @@
     export default {
         data() {
             return {
-                list: {}
+                list: {},
+                seen: false
             }
         },
         name: 'list',
@@ -32,9 +53,12 @@
             this.$store.dispatch('getTasks', { listId: this.listId, boardId: this.boardId })
         },
         methods: {
-            removeList(listId){
-                this.$store.dispatch('removeList', {listId:listId, boardId: this.boardId})
+            removeList(listId) {
+                this.$store.dispatch('removeList', { listId: listId, boardId: this.boardId })
 
+            },
+            newComment(listId) {
+                this.$store.dispatch('newComment', { listId: listId, boardId: this.boardId })
             }
         },
         computed: {
@@ -58,15 +82,18 @@
         border: black;
         border-style: solid;
         min-height: 400px;
-        margin-top:1%;
+        margin-top: 1%;
     }
-    .fa-trash{
-        float:right;
+
+    .fa-trash {
+        float: right;
     }
+
     /* .task{
         background-color: #2b2a2ab7; 
         color: white;
     } */
+
     .list-header {
         /* background-color: #9796965e; */
         padding: 1rem;

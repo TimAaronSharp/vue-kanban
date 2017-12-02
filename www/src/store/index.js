@@ -159,12 +159,21 @@ var store = new vuex.Store({
 
 
 
-
+    // 'boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/' + payload.taskId + 
     //------------COMMENTS--------------//
     getComments({ commit, dispatch }, payload) {
-      api('boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/' + payload.taskId + '/comments')
+      api('/comments')
         .then(res => {
           commit('setActiveComments', { comment: res.data.data, taskId: payload.taskId })
+        })
+        .catch(err => {
+          commit('handleError', err)
+        })
+    },
+    newComment({ commit, dispatch }, payload) {
+      api.post('boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/' + payload.taskId + '/comments')
+        .then(res => {
+          commit('getComments', { comment: res.data.data, taskId: payload.taskId })
         })
         .catch(err => {
           commit('handleError', err)
