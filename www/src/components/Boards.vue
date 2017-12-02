@@ -9,14 +9,17 @@
     <!-- <div class="boardHeader container">
     </div> -->
     <div class="boardList">
-      
-        <div v-for="board in boards">
+
+      <div v-for="board in boards">
+        <div class="board">
           <router-link :to="'/boards/'+board._id">{{board.name}}</router-link>
-          <span @click="removeBoard(board)">x</span>
+          <span class="black" @click="removeBoard(board)">x</span>
         </div>
-      
+
+      </div>
+
     </div>
-      
+
     <div class="boardForm container">
 
       <form @submit.prevent="createBoard">
@@ -78,15 +81,26 @@
     justify-content: center;
     background-color: grey;
 
-    
+
   }
 
   .boardHeader {
     display: flex;
     justify-content: flex-start
   }
-  .boardList{
+
+  .boardList {
     margin: 5rem;
+    background-color: rgba(8, 8, 8, 0.452);
   }
-  
+  .board{
+    background-color:rgb(255, 255, 255);
+    color: white;
+    margin: 1rem;
+    text-decoration: none;
+    font-size: 110%;
+  }
+  .black{
+    color: red;
+  }
 </style>
