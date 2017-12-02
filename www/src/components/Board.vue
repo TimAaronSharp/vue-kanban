@@ -8,7 +8,7 @@
     <div class="createNewList" v-if="seen">
         <form @submit.prevent="creatList">
           <label for="name">name</label>
-          <input type="text" name="name" v-model="newList.name">
+          <input type="text" name="name" v-model="newList.name" required>
           <label for="description">description</label>
           <input type="text" name="description" v-model="newList.description">
           <button type="submit" class="btn btn-success btn-sm">add</button>

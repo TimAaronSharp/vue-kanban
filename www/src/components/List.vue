@@ -6,6 +6,7 @@
                 <i class="fa fa-trash fa-md" @click="removeList(listId)"></i>
             </div>
             <div class="list-body">
+<<<<<<< HEAD
                 <h3>List: {{name}}</h3>
                 <p>List Description: {{description}}</p>
                 <div class="createTask">
@@ -18,6 +19,21 @@
                     </form>
                 </div>
 
+=======
+                <h3>{{name}}</h3>
+                <div v-if="description">
+                    <p>Description: {{description}}</p>
+                </div>
+                <div class="create-task">
+                    <form @submit.prevent="createTask">
+                        <label for="name">name</label>
+                        <input class="form-control" type="text" name="name" v-model="newTask.name" required>
+                        <label for="description">description</label>
+                        <input class="form-control" type="text" name="description" v-model="newTask.description">
+                        <button type="submit" class="btn btn-success">add new task</button>
+                    </form>
+                </div>
+>>>>>>> 83a3042114bc2449787964f8f5b5006d68143c10
             </div>
             <div class="list-footer">
                 <div class="task" v-for="task in tasks">
@@ -49,11 +65,19 @@
         methods: {
             removeList(listId) {
                 this.$store.dispatch('removeList', { listId: listId, boardId: this.boardId })
-
             },
+<<<<<<< HEAD
             createTask() {
                 debugger
                 this.$store.dispatch('createTask', { listId: this.listId, boardId: this.boardId, name: this.name })
+=======
+
+            newComment() {
+                this.$store.dispatch('newComment', { listId: listId, boardId: this.boardId, description: this.newComment.description, })
+            },
+            createTask(listId) {
+                this.$store.dispatch('createTask', { listId: this.listId, boardId: this.boardId, newTask: this.newTask })
+>>>>>>> 83a3042114bc2449787964f8f5b5006d68143c10
             }
         },
         computed: {
@@ -86,7 +110,8 @@
 
     .create-task {
         position: absolute;
-        bottom: 5px;
+        bottom: 10px;
+        left:25%;
     }
 
     /* .task{

@@ -12,22 +12,19 @@
 
       <div v-for="board in boards">
         <div class="board">
-          <span class="font">Board: </span><router-link :to="'/boards/'+board._id">{{board.name}}</router-link><span class="remove" @click="removeBoard(board)">x</span>
+          <router-link :to="'/boards/'+board._id">{{board.name}}</router-link>
+          <span class="remove" @click="removeBoard(board)">x</span>
         </div>
-
       </div>
-
     </div>
-
     <div v-if="seen" class="boardForm container">
-
       <form @submit.prevent="createBoard">
         <label for="name">Name:</label>
         <input class="form-control" placeholder="name" type="text" name="name" v-model="board.name" required>
         <label for="description">Description:</label>
         <input class="form-control" placeholder="description" type="text" name="description" v-model="board.description">
         <div class="blacktext">
-          <button  class="btn-success margins" type="submit">Add Board</button>
+          <button class="btn-success margins" type="submit">Add Board</button>
         </div>
       </form>
     </div>
@@ -70,15 +67,16 @@
 </script>
 
 <style scoped>
-  
   .header {
     display: flex;
     justify-content: space-between
   }
-  .font{
+
+  .font {
     font-size: 150%;
     font-weight: bold;
   }
+
   .boardForm {
     display: flex;
     max-width: 60rem;
@@ -99,25 +97,30 @@
     margin: 5rem;
     /* background-color: rgba(8, 8, 8, 0.452); */
   }
-  .board{
-    background-color:rgb(255, 255, 255);
+
+  .board {
+    background-color: rgb(255, 255, 255);
     color: black;
     margin: 1rem;
     text-decoration: none;
     font-size: 110%;
   }
-  .remove{
+
+  .remove {
     color: red;
     cursor: pointer;
   }
-  a{
+
+  a {
     display: inline-block;
     margin: 1rem;
   }
-  .blacktext{
+
+  .blacktext {
     color: black;
   }
-  .margins{
+
+  .margins {
     margin: .5rem;
   }
 </style>
