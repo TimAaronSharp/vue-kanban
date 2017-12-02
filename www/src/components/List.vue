@@ -43,11 +43,8 @@
         data() {
             return {
                 list: {},
-<<<<<<< HEAD
-                seen: false
-=======
+                seen: false,
                 newTask: {}
->>>>>>> d32181439a32be4fbd6ad43151c6638144f326c6
             }
         },
         name: 'list',
