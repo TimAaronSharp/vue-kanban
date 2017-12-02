@@ -8,6 +8,16 @@
             <div class="list-body">
                 <h3>List: {{name}}</h3>
                 <p>List Description: {{description}}</p>
+                <div class="createTask">
+                    <form @submit="createTask">
+                        <div class="form-group">
+                            <label for="name">Task:</label>
+                            <input name="name" type="text" size="10" v-model="createTask.name" placeholder="task">
+                            <button class="btn-success btn-xs" type="submit">Add</button>
+                        </div>
+                    </form>
+                </div>
+
             </div>
             <div class="list-footer">
                 <div class="task" v-for="task in tasks">
@@ -27,7 +37,7 @@
         data() {
             return {
                 list: {},
-                newTask: {}
+                task: {}
             }
         },
         name: 'list',
@@ -41,13 +51,9 @@
                 this.$store.dispatch('removeList', { listId: listId, boardId: this.boardId })
 
             },
-
-            newComment() {
-                this.$store.dispatch('newComment', { listId: listId, boardId: this.boardId, description: this.newComment.description, })
-            },
-            createTask(listId) {
+            createTask() {
                 debugger
-                this.$store.dispatch('createTask', { listId: this.listId, boardId: this.boardId, newTask: this.newTask })
+                this.$store.dispatch('createTask', { listId: this.listId, boardId: this.boardId, name: this.name })
             }
         },
         computed: {

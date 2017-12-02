@@ -146,6 +146,16 @@ var store = new vuex.Store({
           commit('handleError', err)
         })
     },
+    createTask({ commit, dispatch }, payload) {
+      debugger
+      api.post('tasks/', payload)
+        .then(res => {
+          dispatch('getTasks')
+        })
+        .catch(err => {
+          commit('handleError', err)
+        })
+    },
     moveTaskToDifferentList({ commit, dispatch }, payload) {
       api.put('tasks/' + payload.taskId, payload.listId)
         .then(res => {
@@ -173,7 +183,7 @@ var store = new vuex.Store({
     newComment({ commit, dispatch }, payload) {
       api.post('/comments', payload)
         .then(res => {
-          dispatch('getComments', payload.taskId)
+          dispatch('getComments')
         })
         .catch(err => {
           commit('handleError', err)
