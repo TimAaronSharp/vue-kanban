@@ -3,18 +3,9 @@
     <div>
         <div class="list">
             <div class=" list-header">
-                    <i class="fa fa-trash fa-lg" @click="removeList(listId)"></i>
-                <h3>{{name}}</h3>
-                <div v-if="description"><p>Description: {{description}}</p></div>
-                <div class="create-task">
-                    <form @submit.prevent="createTask">
-                        <label for="name">name</label>
-                        <input type="text" name="name" v-model="newTask.name" required>
-                        <label for="description">description</label>
-                        <input type="text" name="description" v-model="newTask.description" >
-                        <button type="submit" class="btn btn-success">add new task</button>
-                    </form>
-                </div>
+                    <i class="fa fa-trash fa-md" @click="removeList(listId)"></i>
+                <h3>List: {{name}}</h3>
+                <p>List Description: {{description}}</p>
             </div>
             <div class="task" v-for="task in tasks">
                 <!-- <router-link :to="'/tasks/'+task._id">{{task.name}}</router-link> -->
@@ -84,8 +75,9 @@
     /* .task{
         background-color: #2b2a2ab7; 
         color: white;
-    }
-    .list-header {
-        background-color: #9796965e;
     } */
+    .list-header {
+        /* background-color: #9796965e; */
+        padding: 1rem;
+    }
 </style>
