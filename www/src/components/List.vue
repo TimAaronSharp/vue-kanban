@@ -2,13 +2,12 @@
 
     <div>
         <div class="list">
-
-            <div class="list-header">
+            <div class=" list-header">
+                    <i class="fa fa-trash fa-lg" @click="removeList(listId)"></i>
                 <h3>List: {{name}}</h3>
                 <p>List Description: {{description}}</p>
             </div>
-            <!-- <h5>{{_id}}</h5> -->
-            <div class="task" v-for="(task, i) in tasks">
+            <div class="task" v-for="task in tasks">
                 <!-- <router-link :to="'/tasks/'+task._id">{{task.name}}</router-link> -->
                 <task :name="task.name" :description="task.description" :taskId="task._id" :listId="listId" :boardId="boardId"></task>
             </div>
@@ -33,10 +32,10 @@
             this.$store.dispatch('getTasks', { listId: this.listId, boardId: this.boardId })
         },
         methods: {
-            creatList() {
-                this.$store.dispatch()
-            }
+            removeList(listId){
+                this.$store.dispatch('removeList', {listId:listId, boardId: this.boardId})
 
+            }
         },
         computed: {
             tasks() {
@@ -58,13 +57,17 @@
     .list {
         border: black;
         border-style: solid;
-        margin: 1rem;
+        min-height: 400px;
+        margin-top:1%;
     }
-    .task{
-        background-color: #2b2a2ab7;
+    .fa-trash{
+        float:right;
+    }
+    /* .task{
+        background-color: #2b2a2ab7; 
         color: white;
     }
-    /* .list-header {
+    .list-header {
         background-color: #9796965e;
     } */
 </style>

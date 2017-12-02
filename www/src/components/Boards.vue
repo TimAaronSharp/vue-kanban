@@ -56,7 +56,6 @@
     },
     methods: {
       createBoard() {
-
         this.$store.dispatch('createBoard', this.board)
       },
       userLogout() {

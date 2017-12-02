@@ -56,9 +56,11 @@ var store = new vuex.Store({
     }
   },
   actions: {
-    //when writing your auth routes (login, logout, register) be sure to use auth instead of api for the posts
+    //when writing your auth routes (login, logout, register) be sure to use auth instead of api for the posts//
 
-    //--------BOARDS-----------
+
+
+    //--------BOARDS-----------//
     getBoards({ commit, dispatch }) {
       api('userboards')
         .then(res => {
@@ -68,9 +70,8 @@ var store = new vuex.Store({
           commit('handleError', err)
         })
     },
-    getBoard({ commit, dispatch }, id) {
-
-      api('boards/' + id)
+    getBoard({ commit, dispatch }, payload) {
+      api('boards/' + payload.boardId)
         .then(res => {
           commit('setActiveBoard', res.data.data)
           dispatch('getLists', res.data.data._id)
@@ -97,9 +98,12 @@ var store = new vuex.Store({
           commit('handleError', err)
         })
     },
-    //^^^^^^^^^^^^^^BOARDS^^^^^^^^^^^^^^^^^
+    //^^^^^^^^^^^^^^BOARDS^^^^^^^^^^^^^^^^^//
 
-    //-------------LISTS-------------------
+
+
+
+    //-------------LISTS-------------------//
     getLists({ commit, dispatch }, id) {
       api('boards/' + id + '/lists')
         .then(res => {
@@ -109,17 +113,29 @@ var store = new vuex.Store({
           commit('handleError', err)
         })
     },
-    createList({ commit, dispatch }, list) {
-      api.post('boards/', list)
+    createList({ commit, dispatch }, payload) {
+      api.post('lists/', payload)
         .then(res => {
-          dispatch('getLists')
+          dispatch('getLists', payload.boardId)
         })
         .catch(err => {
           commit('handleError', err)
         })
     },
-    //^^^^^^^^^^^^^LISTS^^^^^^^^^^^^^^^^^^
-    //-------------TASKS-----------------
+    removeList({ commit, dispatch }, payload) {
+      api.delete('lists/' + payload.listId)
+        .then(res => {
+          dispatch('getLists', payload.boardId)
+        })
+        .catch(err => {
+          commit('handleError', err)
+        })
+    },
+    //^^^^^^^^^^^^^LISTS^^^^^^^^^^^^^^^^^^//
+
+
+
+    //-------------TASKS-----------------//
     getTasks({ commit, dispatch }, payload) {
 
       api('boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks')
@@ -139,8 +155,12 @@ var store = new vuex.Store({
           commit('handleError', err)
         })
     },
-    //^^^^^^^^^^^^^TASKS^^^^^^^^^^^^^^^^^
-    //------------COMMENTS--------------
+    //^^^^^^^^^^^^^TASKS^^^^^^^^^^^^^^^^^//
+
+
+
+
+    //------------COMMENTS--------------//
     getComments({ commit, dispatch }, payload) {
       api('boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/' + payload.taskId + '/comments')
         .then(res => {
@@ -150,8 +170,11 @@ var store = new vuex.Store({
           commit('handleError', err)
         })
     },
-    //^^^^^^^^^^^COMMENTS^^^^^^^^^^^^^^
-    //-----------------LOGIN/REGISTER/LOGOUT-----------
+    //^^^^^^^^^^^COMMENTS^^^^^^^^^^^^^^//
+
+
+
+    //---------LOGIN/REGISTER/LOGOUT-----------//
     userLogin({ commit, dispatch }, login) {
       auth.post('login', login)
         .then(res => {
@@ -202,7 +225,8 @@ var store = new vuex.Store({
           res.status(401).send({ Error: err })
         })
     },
-    //^^^^^^^^^^^^^^USER/REGISTER/LOGOUT^^^^^^^^^^^
+    //^^^^^^^^^^^^^^USER/REGISTER/LOGOUT^^^^^^^^^^^//
+
     handleError({ commit, dispatch }, err) {
       commit('handleError', err)
     }
