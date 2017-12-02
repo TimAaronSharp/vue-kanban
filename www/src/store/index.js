@@ -114,9 +114,10 @@ var store = new vuex.Store({
         })
     },
     createList({ commit, dispatch }, payload) {
-      api.post('lists/', payload)
-        .then(res => {
-          dispatch('getLists', payload.boardId)
+      debugger
+      api.post('lists/', payload.list)
+      .then(res => {
+          dispatch('getLists', payload.list.boardId)
         })
         .catch(err => {
           commit('handleError', err)

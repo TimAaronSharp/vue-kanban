@@ -6,21 +6,21 @@
     </div>
     <button class="btn-info" @click="seen = !seen">New List</button>
     <div class="createList" v-if="seen">
-        <form @submit.prevent="createList">
-          <label for="name">name</label>
-          <input type="text" name="name" v-model="createList.name" required>
-          <label for="description">description</label>
-          <input type="text" name="description" v-model="createList.description">
-          <button type="submit" class="btn btn-success btn-sm">add</button>
-        </form>
-      </div>
-    
+      <form @submit.prevent="createList">
+        <label for="name">name</label>
+        <input type="text" name="name" v-model="list.name" required>
+        <label for="description">description</label>
+        <input type="text" name="description" v-model="list.description">
+        <button type="submit" class="btn btn-success btn-sm">add</button>
+      </form>
+    </div>
+
     <div class="row dalists">
       <div class="drawList col-sm-4" v-for="list in lists">
         <list class="list" :name="list.name" :description="list.description" :listId="list._id" :boardId="board._id"></list>
       </div>
     </div>
-    
+
   </div>
 </template>
 
@@ -29,7 +29,9 @@
   export default {
     data() {
       return {
-        list: {},
+        list: {
+          boardId: this.$route.params.id
+        },
         seen: false
       }
     },
@@ -39,7 +41,7 @@
     },
     methods: {
       createList() {
-        this.$store.dispatch('createList', { name: this.name, description: this.description, boardId: this.$route.params.id })
+        this.$store.dispatch('createList', { list: this.list })
       }
     },
     computed: {
@@ -60,13 +62,15 @@
   .dalists {
     margin: 1rem;
   }
-  .boardheader{
+
+  .boardheader {
     background-color: rgb(253, 251, 251);
     border-radius: 15px;
     color: black;
     display: inline;
   }
-  .list{
+
+  .list {
     background-color: rgba(253, 202, 119, 0.795);
   }
 </style>
