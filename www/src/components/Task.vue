@@ -1,14 +1,14 @@
 <template>
     <div class="task">
-        <h3 class="open-comments" @click="openComments">{{name}}</h3>
+        <p class="open-comments" @click="openComments">Task: {{name}}</p>
         <div class="the-comments" v-for="comment in comments">
-            <p>{{comment.description}}</p>
+                <p><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span> {{comment.description}} <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></p>
         </div>
-        <div class="the-lists">
+        <!-- <div class="the-lists">
             <select >
                 <option v-for="list in lists">{{list.name}}</option>
             </select>
-        </div>
+        </div> -->
 
     </div>
 </template>
@@ -49,5 +49,6 @@
     .open-comments {
         color: red;
         cursor: pointer;
+        font-size: 100%; 
     }
 </style>

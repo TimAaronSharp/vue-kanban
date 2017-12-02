@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>(board name){{board.name}}</h2>
+    <h2>Board: {{board.name}}</h2>
     <div class="drawList" v-for="list in lists">
       <list :name="list.name" :description="list.description" :listId="list._id" :boardId="board._id">
 
