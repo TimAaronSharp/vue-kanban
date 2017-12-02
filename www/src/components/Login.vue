@@ -1,39 +1,76 @@
 <template>
-<div class="loginbox">
+    <div class="loginbox">
 
-    <div class='login'>
-       <div class="header container">
-           <h1>Kanban Login:</h1>
-       </div>
-       
-        <form @submit.prevent="userLogin" class="form-horizontal" role="form">
-            <div class="form-group">
-                <label class="col-sm-2 control-label" for="inputEmail3">Email</label>
-                <div class="col-sm-10">
-                    <input type="email" class="form-control" id="inputEmail3" placeholder="Email" v-model="login.email" />
-                </div>
+        <div class='login'>
+            <div class="header container">
+                <h1>Kanban Login:</h1>
             </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label" for="inputPassword3">Password</label>
-                <div class="col-sm-10">
-                    <input type="password" class="form-control" id="inputPassword3" placeholder="Password" v-model="login.password" />
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" /> Remember me
-                        </label>
+
+            <form @submit.prevent="userLogin" class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="inputEmail3">Email</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" id="inputEmail3" placeholder="Email" v-model="login.email" />
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-default">Sign in</button>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="inputPassword3">Password</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" id="inputPassword3" placeholder="Password" v-model="login.password" />
+                    </div>
                 </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" /> Remember me
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default">Sign in</button>
+                    </div>
+                    <a @click="seen = !seen">Don't have an account? Register here.</a>
+                </div>
+            </form>
+        </div>
+        <div class="register" v-if ="seen">
+
+            <div class="regheader container">
+                <h1>Kanban Register:</h1>
             </div>
-        </form>
+
+            <div class="form">
+                <form @submit.prevent="userRegister" class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="inputEmail3">Email</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" id="inputEmail3" placeholder="Email" v-model="register.email" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="inputName3">Name</label>
+                        <div class="col-sm-10">
+                            <input type="name" class="form-control" id="inputName3" placeholder="Password" v-model="register.name" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="inputPassword3">Password</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="inputPassword3" placeholder="Password" v-model="register.password" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-default">Register</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
 
 
         <!-- <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalHorizontal">
@@ -92,7 +129,7 @@
         </div> -->
     </div>
 
-</div>
+    </div>
 </template>
 
 
@@ -101,10 +138,9 @@
         name: 'login',
         data() {
             return {
+                seen: false,
                 register: {
-                    name: '',
-                    email: '',
-                    password: ''
+
                 },
                 login: {
                     email: '',
@@ -140,14 +176,20 @@
     .modal-body .form-horizontal .col-sm-offset-2 {
         margin-left: 15px;
     }
-    .header{
+
+    .header {
         display: flex;
         justify-content: flex-start;
-    
+
     }
-    .loginbox{
+
+    .loginbox {
         background-color: #b8dcffa2;
         padding: .5rem;
+    }
+
+    .register {
+        margin: 1rem
     }
 </style>
 
