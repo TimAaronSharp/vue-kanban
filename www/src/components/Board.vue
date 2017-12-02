@@ -3,9 +3,9 @@
     <h2>Board: {{board.name}}</h2>
     <form @submit.prevent="creatList">
       <label for="name">name</label>
-      <input type="text" name="name" v-model="newList.name">
+      <input type="text" name="name" v-model="newList.name" required>
       <label for="description">description</label>
-      <input type="text" name="description" v-model="newList.description">
+      <input type="text" name="description" v-model="newList.description" >
       <button type="submit" class="btn btn-success">add new list</button>
     </form>
     <div class="row">

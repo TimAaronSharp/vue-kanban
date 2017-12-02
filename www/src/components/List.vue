@@ -4,8 +4,17 @@
         <div class="list">
             <div class=" list-header">
                     <i class="fa fa-trash fa-lg" @click="removeList(listId)"></i>
-                <h3>List: {{name}}</h3>
-                <p>List Description: {{description}}</p>
+                <h3>{{name}}</h3>
+                <div v-if="description"><p>Description: {{description}}</p></div>
+                <div class="create-task">
+                    <form @submit.prevent="createTask">
+                        <label for="name">name</label>
+                        <input type="text" name="name" v-model="newTask.name" required>
+                        <label for="description">description</label>
+                        <input type="text" name="description" v-model="newTask.description" >
+                        <button type="submit" class="btn btn-success">add new task</button>
+                    </form>
+                </div>
             </div>
             <div class="task" v-for="task in tasks">
                 <!-- <router-link :to="'/tasks/'+task._id">{{task.name}}</router-link> -->
@@ -22,7 +31,8 @@
     export default {
         data() {
             return {
-                list: {}
+                list: {},
+                newTask: {}
             }
         },
         name: 'list',
@@ -35,6 +45,10 @@
             removeList(listId){
                 this.$store.dispatch('removeList', {listId:listId, boardId: this.boardId})
 
+            },
+            createTask(){
+                debugger
+                this.$store.dispatch('createTask', {listId: this.listId, boardId: this.boardId, newTask: this.newTask})
             }
         },
         computed: {
@@ -62,6 +76,10 @@
     }
     .fa-trash{
         float:right;
+    }
+    .create-task{
+        position: absolute;
+        bottom: 5px;
     }
     /* .task{
         background-color: #2b2a2ab7; 

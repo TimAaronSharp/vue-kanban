@@ -13,7 +13,7 @@
       <div v-for="board in boards">
         <div class="board">
           <router-link :to="'/boards/'+board._id">{{board.name}}</router-link>
-          <span class="black" @click="removeBoard(board)">x</span>
+          <span class="remove" @click="removeBoard(board)">x</span>
         </div>
 
       </div>
@@ -24,7 +24,7 @@
 
       <form @submit.prevent="createBoard">
         <label for="name">Name</label>
-        <input class="form-control" type="text" name="name" v-model="board.name">
+        <input class="form-control" type="text" name="name" v-model="board.name" required>
         <label for="description">description</label>
         <input class="form-control" type="text" name="description" v-model="board.description">
         <div>
@@ -57,6 +57,7 @@
     methods: {
       createBoard() {
         this.$store.dispatch('createBoard', this.board)
+        this.board = {}
       },
       userLogout() {
         this.$store.dispatch('logout', this.$store.state.user._id)
@@ -99,7 +100,8 @@
     text-decoration: none;
     font-size: 110%;
   }
-  .black{
+  .remove{
     color: red;
+    cursor: pointer;
   }
 </style>
