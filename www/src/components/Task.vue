@@ -2,14 +2,13 @@
     <div class="task">
         <p class="open-comments" @click="openComments">Task: {{name}}</p>
         <div class="the-comments" v-for="comment in comments">
-                <p><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span> {{comment.description}} <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></p>
+            <p>{{comment.description}}</p>
         </div>
-        <div class="the-lists">
+        <!-- <div class="the-lists">
             <select @change="moveTaskToDifferentList">
                 <option v-for="list in lists">{{list.name}}</option>
             </select>
-        </div> -->
-
+        </div>  -->
     </div>
 </template>
 
@@ -52,6 +51,6 @@
     .open-comments {
         color: red;
         cursor: pointer;
-        font-size: 100%; 
+        /* font-size: 100%;  */
     }
 </style>
