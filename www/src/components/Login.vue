@@ -3,24 +3,24 @@
 
         <div class='login'>
             <div class="header container">
-                <h1>Kanban Login:</h1>
+                <h3>Kanban Login:</h3>
             </div>
 
             <form @submit.prevent="userLogin" class="form-horizontal" role="form">
                 <div class="form-group">
-                    <label class="col-sm-2 control-label" for="inputEmail3">Email</label>
-                    <div class="col-sm-10">
-                        <input type="email" class="form-control" id="inputEmail3" placeholder="Email" v-model="login.email" />
+                    <label class="" for="inputEmail3">Email</label>
+                    <div class="">
+                        <input type="email" class="" id="inputEmail3" placeholder="Email" size="35" v-model="login.email" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label" for="inputPassword3">Password</label>
-                    <div class="col-sm-10">
-                        <input type="password" class="form-control" id="inputPassword3" placeholder="Password" v-model="login.password" />
+                    <label class="" for="inputPassword3">Password</label>
+                    <div class="">
+                        <input type="password" class="" id="inputPassword3" placeholder="Password" size="35" v-model="login.password" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
+                    <div class=" col-sm-10">
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" /> Remember me
@@ -29,37 +29,39 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
+                    <div class=" col-sm-10">
                         <button type="submit" class="btn btn-default">Sign in</button>
                     </div>
+                </div>
+                <div class="registerhere">
                     <a @click="seen = !seen">Don't have an account? Register here.</a>
                 </div>
             </form>
         </div>
-        <div class="register" v-if ="seen">
+        <div class="register" v-if="seen">
 
             <div class="regheader container">
-                <h1>Kanban Register:</h1>
+                <h3>Kanban Register:</h3>
             </div>
 
             <div class="form">
                 <form @submit.prevent="userRegister" class="form-horizontal" role="form">
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="inputEmail3">Email</label>
-                        <div class="col-sm-10">
-                            <input type="email" class="form-control" id="inputEmail3" placeholder="Email" v-model="register.email" />
+                        <label class="" for="inputEmail3">Email</label>
+                        <div class="">
+                            <input type="email" class="" size="35" name="inputEmail3" placeholder="Email" v-model="register.email" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="inputName3">Name</label>
-                        <div class="col-sm-10">
-                            <input type="name" class="form-control" id="inputName3" placeholder="Password" v-model="register.name" />
+                        <label class="" for="inputName3">Name</label>
+                        <div class="">
+                            <input type="name" size="35" class="" name="inputName3" placeholder="Password" v-model="register.name" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="inputPassword3">Password</label>
-                        <div class="col-sm-10">
-                            <input type="password" class="form-control" id="inputPassword3" placeholder="Password" v-model="register.password" />
+                        <label class="" for="inputPassword3">Password</label>
+                        <div class="">
+                            <input type="password" size="35" class="" name="inputPassword3" placeholder="Password" v-model="register.password" />
                         </div>
                     </div>
 
@@ -129,7 +131,7 @@
         </div> -->
     </div>
 
-    </div>
+
 </template>
 
 
@@ -179,7 +181,7 @@
 
     .header {
         display: flex;
-        justify-content: flex-start;
+        justify-content: center;
 
     }
 
@@ -188,8 +190,24 @@
         padding: .5rem;
     }
 
-    .register {
-        margin: 1rem
+    .register .login {
+        /* max-width: 40rem ; */
+        margin: 0rem;
+        padding: 0rem;
+        /* background-color: white; */
+    }
+
+    .regheader {
+        display: flex;
+        justify-content: center
+    }
+
+    label {
+        display: inline-block;
+    }
+
+    a {
+        display: block;
     }
 </style>
 
