@@ -3,7 +3,7 @@
     <div>
         <div class="list">
             <div class=" list-header">
-                    <i class="fa fa-trash fa-lg" @click="removeList(listId)"></i>
+                    <i class="fa fa-trash fa-md" @click="removeList(listId)"></i>
                 <h3>List: {{name}}</h3>
                 <p>List Description: {{description}}</p>
             </div>
@@ -66,8 +66,9 @@
     /* .task{
         background-color: #2b2a2ab7; 
         color: white;
-    }
-    .list-header {
-        background-color: #9796965e;
     } */
+    .list-header {
+        /* background-color: #9796965e; */
+        padding: 1rem;
+    }
 </style>

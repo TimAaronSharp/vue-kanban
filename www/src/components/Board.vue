@@ -8,7 +8,7 @@
       <input type="text" name="description" v-model="newList.description">
       <button type="submit" class="btn btn-success">add new list</button>
     </form>
-    <div class="row">
+    <div class="row dalists">
       <div class="drawList col-sm-4" v-for="list in lists">
         <list :name="list.name" :description="list.description" :listId="list._id" :boardId="board._id"></list>
       </div>
@@ -49,4 +49,9 @@
 </script>
 
 <style scoped>
+  .dalists {
+    margin: 1rem;
+  }
+
+
 </style>
