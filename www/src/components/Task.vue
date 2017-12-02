@@ -5,7 +5,7 @@
             <p>{{comment.description}}</p>
         </div>
         <div class="the-lists">
-            <select >
+            <select @change="moveTaskToDifferentList">
                 <option v-for="list in lists">{{list.name}}</option>
             </select>
         </div>
@@ -29,6 +29,9 @@
         methods: {
             openComments() {
                 this.$store.dispatch('getComments', { taskId: this.taskId, listId: this.listId, boardId: this.boardId })
+            },
+            moveTaskToDifferentList() {
+                this.$store.dispatch('moveTaskToDifferentList', { taskId: this.taskId, listId: this.listId, boardId: this.boardId })
             }
         },
         computed: {
