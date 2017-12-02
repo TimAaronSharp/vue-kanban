@@ -121,10 +121,19 @@ var store = new vuex.Store({
     //^^^^^^^^^^^^^LISTS^^^^^^^^^^^^^^^^^^
     //-------------TASKS-----------------
     getTasks({ commit, dispatch }, payload) {
-      
+
       api('boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks')
         .then(res => {
           commit('setActiveTasks', { task: res.data.data, listId: payload.listId })
+        })
+        .catch(err => {
+          commit('handleError', err)
+        })
+    },
+    moveTaskToDifferentList({ commit, dispatch }, payload) {
+      api.put('tasks/' + payload.taskId, payload.listId)
+        .then(res => {
+          dispatch('getTasks')
         })
         .catch(err => {
           commit('handleError', err)

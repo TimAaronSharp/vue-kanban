@@ -4,8 +4,13 @@
         <div class="the-comments" v-for="comment in comments">
                 <p><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span> {{comment.description}} <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></p>
         </div>
+<<<<<<< HEAD
         <!-- <div class="the-lists">
             <select >
+=======
+        <div class="the-lists">
+            <select @change="moveTaskToDifferentList">
+>>>>>>> eb76db5f638fc21621d85060a8d49f93dbcaf64b
                 <option v-for="list in lists">{{list.name}}</option>
             </select>
         </div> -->
@@ -29,6 +34,9 @@
         methods: {
             openComments() {
                 this.$store.dispatch('getComments', { taskId: this.taskId, listId: this.listId, boardId: this.boardId })
+            },
+            moveTaskToDifferentList() {
+                this.$store.dispatch('moveTaskToDifferentList', { taskId: this.taskId, listId: this.listId, boardId: this.boardId })
             }
         },
         computed: {
