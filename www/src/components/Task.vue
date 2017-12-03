@@ -8,11 +8,15 @@
                 <p>{{comment.description}}</p>
             </div>
         </div>
-        <!-- <div class="the-lists">
-            <select @change="moveTaskToDifferentList">
-                <option v-for="list in lists">{{list.name}}</option>
-            </select>
-        </div>  -->
+        <div class="the-lists">
+            <form @submit.prevent="moveTaskToDifferentList">
+                <select v-model="formOption">
+                    <option disabled selected>Select List</option>
+                    <option v-for="list in lists" :value="list._id">{{list.name}}</option>
+                </select>
+                <button type="submit">Move</button>
+            </form>
+        </div>
         <i class="fa fa-plus fa-md" @click="seen = !seen"></i>
         <div class="commentForm" v-if="seen">
             <!-- <div class="cformHead">
@@ -30,7 +34,6 @@
         </div>
     </div>
 
-    </div>
 </template>
 
 <script>
@@ -43,7 +46,12 @@
                     boardId: this.boardId,
                     listId: this.listId,
                     taskId: this.taskId
-                }
+                },
+                moveComment: {
+                    boardId: this.boardId,
+                    taskId: this.taskId
+                },
+                formOption: ''
             }
         },
         name: 'task',
@@ -56,7 +64,8 @@
                 this.$store.dispatch('getComments', { taskId: this.taskId, listId: this.listId, boardId: this.boardId })
             },
             moveTaskToDifferentList() {
-                this.$store.dispatch('moveTaskToDifferentList', { taskId: this.taskId, listId: this.listId, boardId: this.boardId })
+               
+                this.$store.dispatch('moveTaskToDifferentList', { moveComment: this.moveComment, formOption: this.formOption })
             },
             newComment() {
                 this.$store.dispatch('newComment', { comment: this.comment })

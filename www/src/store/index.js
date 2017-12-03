@@ -51,7 +51,7 @@ var store = new vuex.Store({
       console.log('activeTasks: ', state.activeTasks)
     },
     setActiveComments(state, payload) {
-      debugger
+
       vue.set(state.activeComments, payload.taskId, payload.comment)
       console.log('activeComments: ', state.activeComments)
     }
@@ -106,6 +106,7 @@ var store = new vuex.Store({
 
     //-------------LISTS-------------------//
     getLists({ commit, dispatch }, id) {
+      
       api('boards/' + id + '/lists')
         .then(res => {
           commit('setActiveLists', res.data.data)
@@ -115,9 +116,9 @@ var store = new vuex.Store({
         })
     },
     createList({ commit, dispatch }, payload) {
-      debugger
+
       api.post('lists/', payload.list)
-      .then(res => {
+        .then(res => {
           dispatch('getLists', payload.list.boardId)
         })
         .catch(err => {
@@ -168,11 +169,16 @@ var store = new vuex.Store({
         })
     },
     moveTaskToDifferentList({ commit, dispatch }, payload) {
-      api.put('tasks/' + payload.taskId, payload.listId)
+
+      api.put('tasks/' + payload.moveComment.taskId, {
+        listId: payload.formOption
+      })
         .then(res => {
-          dispatch('getTasks')
+         
+          dispatch('getLists', payload.moveComment.boardId) //getTasks?
         })
         .catch(err => {
+          
           commit('handleError', err)
         })
     },
@@ -184,8 +190,8 @@ var store = new vuex.Store({
     //------------COMMENTS--------------//
     getComments({ commit, dispatch }, payload) {
       api('boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/' + payload.taskId + '/comments')
-      .then(res => {
-        debugger
+        .then(res => {
+
           commit('setActiveComments', { comment: res.data.data, taskId: payload.taskId })
         })
         .catch(err => {
@@ -194,8 +200,8 @@ var store = new vuex.Store({
     },
     newComment({ commit, dispatch }, payload) {
       api.post('/comments', payload.comment)
-      .then(res => {
-        debugger
+        .then(res => {
+
           dispatch('getComments', payload.comment)
         })
         .catch(err => {
