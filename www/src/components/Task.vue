@@ -60,15 +60,15 @@
         },
         methods: {
             openComments() {
-                debugger
+                
                 this.$store.dispatch('getComments', { taskId: this.taskId, listId: this.listId, boardId: this.boardId })
             },
             moveTaskToDifferentList() {
-                debugger
+                
                 this.$store.dispatch('moveTaskToDifferentList', { taskId: this.taskId, boardId: this.boardId, oldListId: this.listId, listId: this.formOption })
             },
             newComment() {
-                debugger
+                
                 this.$store.dispatch('newComment', { comment: this.comment })
             }
         },

@@ -18,7 +18,7 @@ vue.use(vuex)
 
 var store = new vuex.Store({
   state: {
-    boards: [{ name: 'This is total rubbish' }],
+    boards: [],
     activeBoard: {},
     activeLists: [],
     activeTasks: {},
@@ -109,7 +109,7 @@ var store = new vuex.Store({
 
     //-------------LISTS-------------------//
     getLists({ commit, dispatch }, id) {
-      debugger
+
       api('boards/' + id + '/lists')
         .then(res => {
           commit('setActiveLists', res.data.data)

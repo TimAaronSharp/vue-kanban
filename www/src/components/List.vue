@@ -60,7 +60,6 @@
                 this.$store.dispatch('removeList', { listId: listId, boardId: this.boardId })
             },
             createTask() {
-                debugger
                 this.$store.dispatch('createTask', { task: this.task })
             }
         },

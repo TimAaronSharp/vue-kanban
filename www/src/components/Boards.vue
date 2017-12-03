@@ -2,17 +2,23 @@
   <div>
 
     <h1>Boards</h1>
-    <div class="header container">
+    <div class="header container-fluid">
       <button @click="seen = !seen" class="btn-info">New Board</button>
       <button class="btn-danger" @click="userLogout">Logout</button>
     </div>
     <!-- <div class="boardHeader container">
     </div> -->
-    <div class="boardList">
+    <div class="boardList row">
 
       <div v-for="board in boards">
-        <div class="board">
-          <router-link :to="'/boards/'+board._id">{{board.name}}</router-link>
+        <div class="board col-sm-3">
+          <router-link :to="'/boards/'+board._id">
+           
+
+              {{board.name}}
+          
+          
+          </router-link>
           <span class="remove" @click="removeBoard(board)">x</span>
         </div>
       </div>
@@ -122,5 +128,12 @@
 
   .margins {
     margin: .5rem;
+  }
+  .board{
+    color:white;
+    height: 75px;
+    width: 150px;
+    border-radius: 5px;
+    background: lightblue;
   }
 </style>
