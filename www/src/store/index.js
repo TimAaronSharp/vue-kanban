@@ -38,9 +38,11 @@ var store = new vuex.Store({
     handleError(state, err) {
       state.error = err
     },
-    setActiveBoard(state, board) {
+    setActiveBoard(state, payload) {
 
-      state.activeBoard = board
+      // vue.set(state.activeBoard, payload, payload.name)
+      state.activeBoard = payload
+      console.log('the active board is: ', state.activeBoard)
     },
     setActiveLists(state, lists) {
 
@@ -72,6 +74,7 @@ var store = new vuex.Store({
         })
     },
     getBoard({ commit, dispatch }, payload) {
+
       api('boards/' + payload.boardId)
         .then(res => {
           commit('setActiveBoard', res.data.data)
@@ -106,7 +109,7 @@ var store = new vuex.Store({
 
     //-------------LISTS-------------------//
     getLists({ commit, dispatch }, id) {
-      
+      debugger
       api('boards/' + id + '/lists')
         .then(res => {
           commit('setActiveLists', res.data.data)
@@ -170,15 +173,15 @@ var store = new vuex.Store({
     },
     moveTaskToDifferentList({ commit, dispatch }, payload) {
 
-      api.put('tasks/' + payload.moveComment.taskId, {
-        listId: payload.formOption
+      api.put('tasks/' + payload.taskId, {
+        listId: payload.listId
       })
         .then(res => {
-         
-          dispatch('getLists', payload.moveComment.boardId) //getTasks?
+          dispatch('getTasks', payload)
+          dispatch('getTasks', { listId: payload.oldListId, boardId: payload.boardId })
+          //getTasks?
         })
         .catch(err => {
-          
           commit('handleError', err)
         })
     },

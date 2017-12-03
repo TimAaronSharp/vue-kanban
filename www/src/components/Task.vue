@@ -9,12 +9,11 @@
             </div>
         </div>
         <div class="the-lists">
-            <form @submit.prevent="moveTaskToDifferentList">
+            <form @change="moveTaskToDifferentList">
                 <select v-model="formOption">
                     <option disabled selected>Select List</option>
                     <option v-for="list in lists" :value="list._id">{{list.name}}</option>
                 </select>
-                <button type="submit">Move</button>
             </form>
         </div>
         <i class="fa fa-plus fa-md" @click="seen = !seen"></i>
@@ -61,13 +60,15 @@
         },
         methods: {
             openComments() {
+                debugger
                 this.$store.dispatch('getComments', { taskId: this.taskId, listId: this.listId, boardId: this.boardId })
             },
             moveTaskToDifferentList() {
-               
-                this.$store.dispatch('moveTaskToDifferentList', { moveComment: this.moveComment, formOption: this.formOption })
+                debugger
+                this.$store.dispatch('moveTaskToDifferentList', { taskId: this.taskId, boardId: this.boardId, oldListId: this.listId, listId: this.formOption })
             },
             newComment() {
+                debugger
                 this.$store.dispatch('newComment', { comment: this.comment })
             }
         },

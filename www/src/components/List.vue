@@ -44,7 +44,8 @@
                 list: {},
                 task: {
                     listId: this.listId, 
-                    boardId: this.boardId},
+                    boardId: this.boardId
+                },
                 seen: false
             }
         },
