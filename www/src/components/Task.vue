@@ -2,10 +2,10 @@
     <div class="comment-container">
         <div class="tasks open-comments">
             <p @click="commentsSeen = !commentsSeen">Task: {{name}}
-                <i class="fa fa-ban" @click="removeTask"></i>
+                <i class="fa fa-trash" @click="removeTask"></i>
                 <div class="comments" v-if="commentsSeen" v-for="comment in comments">
                     <p>{{comment.description}}
-                        <i class="fa fa-minus"@click="removeComment(comment._id)"></i>
+                        <i class="fa fa-trash"@click="removeComment(comment._id)"></i>
                     </p>
                 </div>
             </p>
@@ -118,6 +118,7 @@
         border: 1px solid black;
         border-radius: 5px;
         background: pink;
+        padding: 1rem;
     }
     .add-comment{
         /* color: white; */
@@ -129,8 +130,9 @@
         margin: 2rem;
         border: 1px solid black;
         border-radius: 5px;
-        background: lightgreen;
+        background: rgb(247, 250, 247);
         word-wrap: normal;
+        padding-top: .5rem;
     }
 
     /* .tasks{

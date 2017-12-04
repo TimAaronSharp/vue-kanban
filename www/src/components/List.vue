@@ -10,7 +10,7 @@
             <div v-if="description">
                 <p class="list-text-color">Description: {{description}}</p>
             </div>
-                <button class="btn-info btn-xs margin" @click="toggleTaskForm">New Task</button>
+                <button class="btn-success btn-xs margin" @click="toggleTaskForm">New Task</button>
                 <div class="create-task" v-if="showAddTaskForm">
                     <form @submit.prevent="createTask">
                         <div class="form-group">
@@ -95,7 +95,7 @@
         height: 600px;
         margin-top: 1%;
         overflow: auto;
-        background: rgb(46, 94, 236);
+        background: rgb(104, 142, 255);
     }
 
     ::-webkit-scrollbar {

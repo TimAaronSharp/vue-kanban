@@ -1,10 +1,13 @@
 <template>
   <div class="board container-fluid">
-    <div class="boardheader">
-      <h2>Board: {{board.name}}</h2>
-      <h2>{{board.description}}</h2>
+    <div class="boardHeaderC container">
+
+      <div class="boardheader">
+        <h2>Board: {{board.name}}</h2>
+        <h2>{{board.description}}</h2>
+        <button class="btn-info" @click="toggleListForm">New List</button>
+      </div>
     </div>
-    <button class="btn-info" @click="toggleListForm">New List</button>
     <div class="createList" v-if="showAddListForm">
       <form @submit.prevent="createList">
         <input type="text" name="name" placeholder="name" v-model="list.name" required>
@@ -40,12 +43,12 @@
     methods: {
       createList() {
         this.$store.dispatch('createList', { list: this.list })
-        this.list ={
+        this.list = {
           boardId: this.$route.params.id
         }
         this.toggleListForm()
       },
-      toggleListForm(){
+      toggleListForm() {
         debugger
         this.showAddListForm = !this.showAddListForm
       }
@@ -70,9 +73,17 @@
   }
 
   .boardheader {
-    background-color: rgb(253, 251, 251);
+    background-color: rgb(104, 142, 255);
     border-radius: 15px;
     color: rgb(250, 248, 248);
-    display: inline;
+    display: inline block;
+    width: 30rem;
+    padding: 1rem;
+    
+
+  }
+  .boardHeaderC{
+    display: flex;
+    justify-content:center
   }
 </style>

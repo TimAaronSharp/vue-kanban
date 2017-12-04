@@ -26,9 +26,9 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-  background: lightblue;
+  background: rgb(223, 221, 176);
 }
 html{
-  background:lightblue;
+  background:rgb(223, 221, 176)
 }
 </style>
