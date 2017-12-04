@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <h1>Boards</h1>
+    <h1>{{user.name}}'s Boards</h1>
     <div class="header container-fluid">
       <button @click="seen = !seen" class="btn-info">New Board</button>
       <button class="btn-danger" @click="userLogout">Logout</button>
@@ -10,31 +10,36 @@
     </div> -->
     <div class="boardList row">
 
-      <div v-for="board in boards">
-        <div class="board col-sm-3">
-          <router-link :to="'/boards/'+board._id">
-           
+      <div class="col-sm-3" v-for="board in boards">
+        <div class="board">
+          <router-link class="tdn" :to="'/boards/'+board._id">
+            <p>
+
 
               {{board.name}}
-          
-          
+
+
+            </p>
           </router-link>
           <span class="remove" @click="removeBoard(board)">x</span>
         </div>
       </div>
-    </div>
-    <div v-if="seen" class="boardForm container">
-      <form @submit.prevent="createBoard">
-        <label for="name">Name:</label>
-        <input class="form-control" placeholder="name" type="text" name="name" v-model="board.name" required>
-        <label for="description">Description:</label>
-        <input class="form-control" placeholder="description" type="text" name="description" v-model="board.description">
-        <div class="blacktext">
-          <button class="btn-success margins" type="submit">Add Board</button>
-        </div>
-      </form>
+
+      <div v-if="seen" class="boardForm container">
+        <form @submit.prevent="createBoard">
+          <label for="name">Name:</label>
+          <input class="form-control" placeholder="name" type="text" name="name" v-model="board.name" required>
+          <label for="description">Description:</label>
+          <input class="form-control" placeholder="description" type="text" name="description" v-model="board.description">
+          <div class="blacktext">
+            <button class="btn-success margins" type="submit">Add Board</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
+
+
 
 </template>
 
@@ -55,6 +60,9 @@
     computed: {
       boards() {
         return this.$store.state.boards
+      },
+      user() {
+        return this.$store.state.user
       }
     },
     methods: {
@@ -73,6 +81,11 @@
 </script>
 
 <style scoped>
+  .tdn {
+    text-decoration: none;
+    color: white;
+  }
+
   .header {
     display: flex;
     justify-content: space-between
@@ -104,13 +117,17 @@
     /* background-color: rgba(8, 8, 8, 0.452); */
   }
 
-  .board {
+  .board-boarder {
+    margin: 2rem;
+  }
+
+  /* .board {
     background-color: rgb(255, 255, 255);
     color: black;
     margin: 1rem;
     text-decoration: none;
     font-size: 110%;
-  }
+  } */
 
   .remove {
     color: red;
@@ -129,10 +146,19 @@
   .margins {
     margin: .5rem;
   }
-  .board{
-    color:white;
-    height: 75px;
-    width: 150px;
+
+  .bb {
+    border-radius: 5px;
+    background: lightblue;
+  }
+
+  .board {
+    color: white;
+    font-weight: bold;
+    font-size: 2rem;
+    color: white;
+    height: 125px;
+    margin: 2rem;
     border-radius: 5px;
     background: lightblue;
   }
