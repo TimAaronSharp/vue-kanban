@@ -16,7 +16,7 @@
     </div>
 
     <div class="row dalists">
-      <div class="drawList col-sm-4" v-for="list in lists">
+      <div class="drawList col-sm-3" v-for="list in lists">
         <list class="list" :name="list.name" :description="list.description" :listId="list._id" :boardId="board._id"></list>
       </div>
     </div>
@@ -68,9 +68,5 @@
     border-radius: 15px;
     color: black;
     display: inline;
-  }
-
-  .list {
-    background-color: rgba(253, 202, 119, 0.795);
   }
 </style>

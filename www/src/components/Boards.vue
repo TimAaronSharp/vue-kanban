@@ -160,6 +160,6 @@
     height: 125px;
     margin: 2rem;
     border-radius: 5px;
-    background: rgb(4, 60, 245);
+    background: rgb(0, 60, 255);
   }
 </style>

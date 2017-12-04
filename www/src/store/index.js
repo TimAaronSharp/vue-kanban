@@ -185,6 +185,15 @@ var store = new vuex.Store({
           commit('handleError', err)
         })
     },
+    removeTask({ commit, dispatch }, payload) {
+      api.delete('tasks/' + payload.taskId)
+        .then(res => {
+          dispatch('getTasks', payload)
+        })
+        .catch(err => {
+          commit('handleError', err)
+        })
+    },
     //^^^^^^^^^^^^^TASKS^^^^^^^^^^^^^^^^^//
 
 
@@ -206,6 +215,15 @@ var store = new vuex.Store({
         .then(res => {
 
           dispatch('getComments', payload.comment)
+        })
+        .catch(err => {
+          commit('handleError', err)
+        })
+    },
+    removeComment({ commit, dispatch }, payload) {
+      api.delete('comments/' + payload.commentId)
+        .then(res => {
+          dispatch('getComments', payload)
         })
         .catch(err => {
           commit('handleError', err)

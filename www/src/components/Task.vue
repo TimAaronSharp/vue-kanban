@@ -2,10 +2,14 @@
     <div>
 
 
-        <div class="comments">
-            <p class="open-comments" @click="openComments">Task: {{name}}</p>
+        <div class="comments open-comments">
+            <p @click="openComments">Task: {{name}}
+                <button @click="removeTask">x</button>
+            </p>
             <div class="the-comments" v-for="comment in comments">
-                <p>{{comment.description}}</p>
+                <p>{{comment.description}}
+                    <button @click="removeComment(comment._id)">x</button>
+                </p>
             </div>
         </div>
         <div class="the-lists">
@@ -46,10 +50,6 @@
                     listId: this.listId,
                     taskId: this.taskId
                 },
-                moveComment: {
-                    boardId: this.boardId,
-                    taskId: this.taskId
-                },
                 formOption: ''
             }
         },
@@ -60,16 +60,23 @@
         },
         methods: {
             openComments() {
-                
+
                 this.$store.dispatch('getComments', { taskId: this.taskId, listId: this.listId, boardId: this.boardId })
             },
             moveTaskToDifferentList() {
-                
+
                 this.$store.dispatch('moveTaskToDifferentList', { taskId: this.taskId, boardId: this.boardId, oldListId: this.listId, listId: this.formOption })
             },
             newComment() {
-                
+
                 this.$store.dispatch('newComment', { comment: this.comment })
+            },
+            removeTask() {
+                this.$store.dispatch('removeTask', { taskId: this.taskId, listId: this.listId, boardId: this.boardId })
+            },
+            removeComment(commentId) {
+                debugger
+                this.$store.dispatch('removeComment', { taskId: this.taskId, listId: this.listId, boardId: this.boardId, commentId: commentId })
             }
         },
         computed: {
