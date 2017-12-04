@@ -1,16 +1,16 @@
 <template>
+    <draggable :options="{group: 'lists'}">
+        <div :id="listId">
 
-    <div>
-
-        <div class="list-header">
-            <i class="fa fa-trash fa-md" @click="removeList(listId)"></i>
-        </div>
-        <div class="list-body">
-            <h3 class="list-text-color">{{name}}</h3>
-            <div v-if="description">
-                <p class="list-text-color">Description: {{description}}</p>
+            <div class="list-header">
+                <i class="fa fa-trash fa-md" @click="removeList(listId)"></i>
             </div>
-                <button class="btn-success btn-xs margin" @click="toggleTaskForm">New Task</button>
+            <div class="list-body">
+                <h3 class="list-text-color">{{name}}</h3>
+                <div v-if="description">
+                    <p class="list-text-color">Description: {{description}}</p>
+                </div>
+                <button class="btn-info btn-xs margin" @click="toggleTaskForm">New Task</button>
                 <div class="create-task" v-if="showAddTaskForm">
                     <form @submit.prevent="createTask">
                         <div class="form-group">
@@ -24,21 +24,22 @@
                         <!-- e -->
                     </form>
                 </div>
-            
-        </div>
-        <div class="list-footer">
-            <div class="the-task" v-for="task in tasks">
-                <!-- <router-link :to="'/tasks/'+task._id">{{task.name}}</router-link> -->
-                <task :name="task.name" :description="task.description" :taskId="task._id" :listId="listId" :boardId="boardId"></task>
+
             </div>
+            <div class="list-footer">
+                <div class="the-task" v-for="task in tasks">
+                    <!-- <router-link :to="'/tasks/'+task._id">{{task.name}}</router-link> -->
+                    <task :name="task.name" :description="task.description" :taskId="task._id" :listId="listId" :boardId="boardId" :newListId="newListId"></task>
+                </div>
+            </div>
+
         </div>
-
-    </div>
-
+    </draggable>
 </template>
 
 <script>
     import task from './task'
+    import draggable from 'vuedraggable'
     export default {
         data() {
             return {
@@ -46,12 +47,14 @@
                 task: {
                     listId: this.listId,
                     boardId: this.boardId
+
                 },
-                showAddTaskForm: false
+                showAddTaskForm: false,
+                newListId: document.getElementById('listId')
             }
         },
         name: 'list',
-        props: ['name', 'description', 'listId', 'boardId', 'taskId'],
+        props: ['name', 'description', 'listId', 'boardId', 'taskId', 'id'],
         mounted() {
             // this.$store.dispatch('getLists', this.$route.params.id)
             this.$store.dispatch('getTasks', { listId: this.listId, boardId: this.boardId })
@@ -62,15 +65,17 @@
             },
             createTask() {
                 debugger
+                this.task.order = this.$store.state.activeTasks[this.listId].length
                 this.$store.dispatch('createTask', { task: this.task })
                 this.task = {
                     listId: this.listId,
                     boardId: this.boardId
+
                 }
                 this.toggleTaskForm()
             },
 
-            toggleTaskForm(){
+            toggleTaskForm() {
                 this.showAddTaskForm = !this.showAddTaskForm
             }
         },
@@ -83,7 +88,9 @@
             }
         },
         components: {
-            task
+            task,
+            draggable
+
         }
 
     }

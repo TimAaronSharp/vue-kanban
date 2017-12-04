@@ -8,7 +8,8 @@ var schema = new mongoose.Schema({
     description: { type: String },
     created: { type: Number, default: Date.now() },
     // Relations
-    listId: { type: ObjectId, ref: models.list, required: true }
+    listId: { type: ObjectId, ref: models.list, required: true },
+    order: { type: Number, required: true }
 });
 
 // schema.pre('remove', next => {

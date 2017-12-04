@@ -158,6 +158,7 @@ var store = new vuex.Store({
     //     })
     // },
     createTask({ commit, dispatch }, payload) {
+      debugger
       api.post('/tasks', payload.task)
         .then(res => {
           dispatch('getTasks', payload.task)
