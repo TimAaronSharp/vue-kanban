@@ -83,6 +83,7 @@
     .list {
         border: black;
         border-style: solid;
+        border-radius: 5px;
         min-height: 400px;
         margin-top: 1%;
     }
