@@ -21,6 +21,7 @@
                             <label for="description">description</label>
                             <input class="inline" size="15" type="text" name="description" placeholder="description" v-model="task.description">
                         </div> -->
+                        <!-- e -->
                     </form>
                 </div>
             
