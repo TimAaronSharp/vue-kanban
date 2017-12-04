@@ -128,6 +128,7 @@
         border: 1px solid black;
         border-radius: 5px;
         background: pink;
+        padding: 1rem;
     }
 
     .add-comment {
@@ -140,8 +141,9 @@
         margin: 2rem;
         border: 1px solid black;
         border-radius: 5px;
-        background: lightgreen;
+        background: rgb(247, 250, 247);
         word-wrap: normal;
+        padding-top: .5rem;
     }
 
     /* .tasks{

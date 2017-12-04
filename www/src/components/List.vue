@@ -102,7 +102,7 @@
         height: 600px;
         margin-top: 1%;
         overflow: auto;
-        background: rgb(46, 94, 236);
+        background: rgb(104, 142, 255);
     }
 
     ::-webkit-scrollbar {

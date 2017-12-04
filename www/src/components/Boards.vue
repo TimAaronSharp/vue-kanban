@@ -156,7 +156,7 @@
     height: 125px;
     margin: 2rem;
     border-radius: 5px;
-    background: rgb(0, 60, 255);
+    background: rgb(104, 142, 255);
     display: flex;
     justify-content: center;
     align-items: center
