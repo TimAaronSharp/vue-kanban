@@ -3,8 +3,8 @@
     <div class="boardHeaderC container">
 
       <div class="boardheader">
-        <h2>Board: {{board.name}}</h2>
-        <h2>{{board.description}}</h2>
+        <h2>{{board.name}}</h2>
+        <h4 class="bDesc">Description: {{board.description}}</h4>
         <button class="btn-info" @click="toggleListForm">New List</button>
       </div>
     </div>
@@ -71,7 +71,9 @@
   .dalists {
     margin: 1rem;
   }
-
+  .bDesc{
+    color: rgb(233, 233, 233);
+  }
   .boardheader {
     background-color: rgb(104, 142, 255);
     border-radius: 15px;
@@ -79,7 +81,7 @@
     display: inline block;
     width: 30rem;
     padding: 1rem;
-    
+
 
   }
   .boardHeaderC{

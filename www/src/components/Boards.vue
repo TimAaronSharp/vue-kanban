@@ -1,11 +1,12 @@
 <template>
   <div>
-
-    <h1>{{user.name}}'s Boards</h1>
-    <div class="header container-fluid">
-      <button @click="toggleBoradForm" class="btn-info">New Board</button>
-      <button class="btn-danger" @click="userLogout">Logout</button>
-    </div>
+<div class="boardsHeader container">
+  <h1>{{user.name}}'s Boards</h1>
+  <div class="header container-fluid">
+    <button @click="toggleBoradForm" class="btn-info">New Board</button>
+    <button class="btn-danger" @click="userLogout">Logout</button>
+  </div>
+</div>
     <!-- <div class="boardHeader container">
     </div> -->
     <div class="boardList row">
@@ -107,7 +108,8 @@
 
   .boardHeader {
     display: flex;
-    justify-content: flex-start
+    justify-content: flex-start;
+    
   }
 
   .boardList {
@@ -118,7 +120,13 @@
   .board-boarder {
     margin: 2rem;
   }
-
+  .boardsHeader{
+    background-color: rgb(104, 142, 255);
+    width: 30rem;
+    border-radius: 25px;
+    padding: 1rem;
+    color: white;
+  }
   /* .board {
     background-color: rgb(255, 255, 255);
     color: black;
