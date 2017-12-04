@@ -14,7 +14,7 @@
       <div class="col-sm-3" v-for="board in boards">
         <div class="board flex">
           <router-link class="router-link-text" :to="'/boards/'+board._id">
-            <p>
+            <p class="boardName">
               {{board.name}}
             </p>
           </router-link>
@@ -94,7 +94,9 @@
     font-size: 150%;
     font-weight: bold;
   }
-
+  .boardName:hover{
+    color: rgb(232, 240, 158);
+  }
   .boardForm {
     display: flex;
     max-width: 60rem;
@@ -124,7 +126,7 @@
     background-color: rgb(104, 142, 255);
     width: 30rem;
     border-radius: 25px;
-    padding: 1rem;
+    padding: 1.5rem;
     color: white;
   }
   /* .board {

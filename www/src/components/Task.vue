@@ -2,7 +2,7 @@
     <draggable :options="{group: 'tasks'}" @end ="moveTaskToDifferentList(lists[this._id])">
         <div class="comment-container">
             <div class="tasks open-comments">
-                <p @click="commentsSeen = !commentsSeen"><b>Task: </b>{{name}}
+                <p class="taskTitle" @click="commentsSeen = !commentsSeen"><b>Task: </b>{{name}}
                     <i class="fa fa-ban" @click="removeTask"></i>
                     <div class="comments" v-if="commentsSeen" v-for="comment in comments">
                         <p>{{comment.description}}
@@ -140,7 +140,12 @@
         padding-top: 5%;
         cursor: pointer;
     }
-
+    .add-comment:hover{
+        color: rgb(7, 7, 7);
+    }
+    .taskTitle:hover{
+        color: rgb(2, 2, 2);
+    }
     .comments {
         margin: 2rem;
         border: 1px solid black;
