@@ -3,7 +3,7 @@
 
     <h1>{{user.name}}'s Boards</h1>
     <div class="header container-fluid">
-      <button @click="seen = !seen" class="btn-info">New Board</button>
+      <button @click="toggleBoradForm" class="btn-info">New Board</button>
       <button class="btn-danger" @click="userLogout">Logout</button>
     </div>
     <!-- <div class="boardHeader container">
@@ -11,25 +11,19 @@
     <div class="boardList row">
 
       <div class="col-sm-3" v-for="board in boards">
-        <div class="board">
-          <router-link class="tdn" :to="'/boards/'+board._id">
+        <div class="board flex">
+          <router-link class="router-link-text" :to="'/boards/'+board._id">
             <p>
-
-
               {{board.name}}
-
-
             </p>
           </router-link>
           <span class="remove" @click="removeBoard(board)">x</span>
         </div>
       </div>
 
-      <div v-if="seen" class="boardForm container">
+      <div v-if="showBoardForm" class="boardForm container">
         <form @submit.prevent="createBoard">
-          <label for="name">Name:</label>
           <input class="form-control" placeholder="name" type="text" name="name" v-model="board.name" required>
-          <label for="description">Description:</label>
           <input class="form-control" placeholder="description" type="text" name="description" v-model="board.description">
           <div class="blacktext">
             <button class="btn-success margins" type="submit">Add Board</button>
@@ -50,7 +44,7 @@
         register: {},
         login: {},
         board: {},
-        seen: false
+        showBoardForm: false
       }
     },
     name: 'boards',
@@ -69,19 +63,23 @@
       createBoard() {
         this.$store.dispatch('createBoard', this.board)
         this.board = {}
+        this.toggleBoradForm()
       },
       userLogout() {
         this.$store.dispatch('logout', this.$store.state.user._id)
       },
       removeBoard(board) {
         this.$store.dispatch('removeBoard', board)
+      },
+      toggleBoradForm() {
+        this.showBoardForm = !this.showBoardForm
       }
     }
   }
 </script>
 
 <style scoped>
-  .tdn {
+  .router-link-text {
     text-decoration: none;
     color: white;
   }
@@ -132,6 +130,9 @@
   .remove {
     color: red;
     cursor: pointer;
+    position: absolute;
+    top: 10%;
+    right:15%;
   }
 
   a {
@@ -147,11 +148,6 @@
     margin: .5rem;
   }
 
-  .bb {
-    border-radius: 5px;
-    background: lightblue;
-  }
-
   .board {
     color: white;
     font-weight: bold;
@@ -161,5 +157,8 @@
     margin: 2rem;
     border-radius: 5px;
     background: rgb(0, 60, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center
   }
 </style>

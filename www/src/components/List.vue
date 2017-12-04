@@ -6,24 +6,24 @@
             <i class="fa fa-trash fa-md" @click="removeList(listId)"></i>
         </div>
         <div class="list-body">
-            <h3>{{name}}</h3>
+            <h3 class="list-text-color">{{name}}</h3>
             <div v-if="description">
-                <p>Description: {{description}}</p>
+                <p class="list-text-color">Description: {{description}}</p>
             </div>
-            <button class="btn-info btn-xs margin" @click="seen = !seen">New Task</button>
-            <div class="create-task" v-if="seen">
-                <form @submit.prevent="createTask">
-                    <div class="form-group">
-                        <label for="name">name</label>
-                        <input class="inline" size="15" type="text" name="name" placeholder="name" v-model="task.name" required>
-                        <button type="submit" class="btn-xs btn-success">Add</button>
-                    </div>
-                    <!-- <div class="form-group">
-                        <label for="description">description</label>
-                        <input class="inline" size="15" type="text" name="description" placeholder="description" v-model="task.description">
-                    </div> -->
-                </form>
-            </div>
+                <button class="btn-info btn-xs margin" @click="toggleTaskForm">New Task</button>
+                <div class="create-task" v-if="showAddTaskForm">
+                    <form @submit.prevent="createTask">
+                        <div class="form-group">
+                            <input class="inline" size="15" type="text" name="name" placeholder="name" v-model="task.name" required>
+                            <button type="submit" class="btn-xs btn-success">Add</button>
+                        </div>
+                        <!-- <div class="form-group">
+                            <label for="description">description</label>
+                            <input class="inline" size="15" type="text" name="description" placeholder="description" v-model="task.description">
+                        </div> -->
+                    </form>
+                </div>
+            
         </div>
         <div class="list-footer">
             <div class="the-task" v-for="task in tasks">
@@ -46,7 +46,7 @@
                     listId: this.listId,
                     boardId: this.boardId
                 },
-                seen: false
+                showAddTaskForm: false
             }
         },
         name: 'list',
@@ -60,7 +60,17 @@
                 this.$store.dispatch('removeList', { listId: listId, boardId: this.boardId })
             },
             createTask() {
+                debugger
                 this.$store.dispatch('createTask', { task: this.task })
+                this.task = {
+                    listId: this.listId,
+                    boardId: this.boardId
+                }
+                this.toggleTaskForm()
+            },
+
+            toggleTaskForm(){
+                this.showAddTaskForm = !this.showAddTaskForm
             }
         },
         computed: {
@@ -102,6 +112,7 @@
 
     .fa-trash {
         float: right;
+        color: white;
     }
 
     .inline {
@@ -113,6 +124,10 @@
         color: white;
     } */
 
+    .list-text-color {
+        color: white;
+    }
+
     .list-header {
         /* background-color: #9796965e; */
         padding: 1rem;
@@ -121,7 +136,8 @@
     .margin {
         margin: 1rem;
     }
-    .the-task{
+
+    .the-task {
         margin-top: 0.5rem;
     }
 </style>

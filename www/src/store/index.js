@@ -45,7 +45,6 @@ var store = new vuex.Store({
       console.log('the active board is: ', state.activeBoard)
     },
     setActiveLists(state, lists) {
-
       state.activeLists = lists
     },
     setActiveTasks(state, payload) {
@@ -53,7 +52,6 @@ var store = new vuex.Store({
       console.log('activeTasks: ', state.activeTasks)
     },
     setActiveComments(state, payload) {
-
       vue.set(state.activeComments, payload.taskId, payload.comment)
       console.log('activeComments: ', state.activeComments)
     }
@@ -109,7 +107,6 @@ var store = new vuex.Store({
 
     //-------------LISTS-------------------//
     getLists({ commit, dispatch }, id) {
-
       api('boards/' + id + '/lists')
         .then(res => {
           commit('setActiveLists', res.data.data)
@@ -119,7 +116,6 @@ var store = new vuex.Store({
         })
     },
     createList({ commit, dispatch }, payload) {
-
       api.post('lists/', payload.list)
         .then(res => {
           dispatch('getLists', payload.list.boardId)
@@ -143,7 +139,6 @@ var store = new vuex.Store({
 
     //-------------TASKS-----------------//
     getTasks({ commit, dispatch }, payload) {
-
       api('boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks')
         .then(res => {
           commit('setActiveTasks', { task: res.data.data, listId: payload.listId })

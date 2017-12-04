@@ -4,13 +4,11 @@
       <h2>Board: {{board.name}}</h2>
       <h2>{{board.description}}</h2>
     </div>
-    <button class="btn-info" @click="seen = !seen">New List</button>
-    <div class="createList" v-if="seen">
+    <button class="btn-info" @click="toggleListForm">New List</button>
+    <div class="createList" v-if="showAddListForm">
       <form @submit.prevent="createList">
-        <label for="name">name</label>
-        <input type="text" name="name" v-model="list.name" required>
-        <label for="description">description</label>
-        <input type="text" name="description" v-model="list.description">
+        <input type="text" name="name" placeholder="name" v-model="list.name" required>
+        <input type="text" name="description" placeholder="description" v-model="list.description">
         <button type="submit" class="btn btn-success btn-sm">add</button>
       </form>
     </div>
@@ -32,7 +30,7 @@
         list: {
           boardId: this.$route.params.id
         },
-        seen: false
+        showAddListForm: false
       }
     },
     name: 'board',
@@ -42,6 +40,14 @@
     methods: {
       createList() {
         this.$store.dispatch('createList', { list: this.list })
+        this.list ={
+          boardId: this.$route.params.id
+        }
+        this.toggleListForm()
+      },
+      toggleListForm(){
+        debugger
+        this.showAddListForm = !this.showAddListForm
       }
     },
     computed: {
@@ -66,7 +72,7 @@
   .boardheader {
     background-color: rgb(253, 251, 251);
     border-radius: 15px;
-    color: black;
+    color: rgb(250, 248, 248);
     display: inline;
   }
 </style>
