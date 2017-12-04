@@ -107,11 +107,17 @@
         margin-right: 2rem;
         border: 1px solid black;
         border-radius: 5px;
+        background: pink;
     }
 
     .comments {
         margin: 2rem;
         border: 1px solid black;
         border-radius: 5px;
+        background:lightgreen;
+        word-wrap: normal;
     }
+    /* .tasks{
+        margin-top: 0.5rem;
+    } */
 </style>

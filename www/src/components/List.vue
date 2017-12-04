@@ -2,7 +2,7 @@
 
     <div>
 
-        <div class=" list-header">
+        <div class="list-header">
             <i class="fa fa-trash fa-md" @click="removeList(listId)"></i>
         </div>
         <div class="list-body">
@@ -16,12 +16,12 @@
                     <div class="form-group">
                         <label for="name">name</label>
                         <input class="inline" size="15" type="text" name="name" placeholder="name" v-model="task.name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="description">description</label>
-                        <input class="inline" size="15" type="text" name="description" placeholder="description" v-model="task.description">
                         <button type="submit" class="btn-xs btn-success">Add</button>
                     </div>
+                    <!-- <div class="form-group">
+                        <label for="description">description</label>
+                        <input class="inline" size="15" type="text" name="description" placeholder="description" v-model="task.description">
+                    </div> -->
                 </form>
             </div>
         </div>
@@ -120,5 +120,8 @@
 
     .margin {
         margin: 1rem;
+    }
+    .the-task{
+        margin-top: 0.5rem;
     }
 </style>
