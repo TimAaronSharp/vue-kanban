@@ -1,16 +1,16 @@
 <template>
-    <div>
+    <div class="comment-container">
 
 
-        <div class="comments open-comments">
-            <p @click="openComments">Task: {{name}}
+        <div class="tasks open-comments">
+            <p @click="commentsSeen = !commentsSeen">Task: {{name}}
                 <button @click="removeTask">x</button>
+                <div class="comments" v-if="commentsSeen" v-for="comment in comments">
+                    <p>{{comment.description}}
+                        <button @click="removeComment(comment._id)">x</button>
+                    </p>
+                </div>
             </p>
-            <div class="the-comments" v-for="comment in comments">
-                <p>{{comment.description}}
-                    <button @click="removeComment(comment._id)">x</button>
-                </p>
-            </div>
         </div>
         <div class="the-lists">
             <form @change="moveTaskToDifferentList">
@@ -50,13 +50,14 @@
                     listId: this.listId,
                     taskId: this.taskId
                 },
-                formOption: ''
+                formOption: '',
+                commentsSeen: false
             }
         },
         name: 'task',
         props: ['name', 'description', 'taskId', 'listId', 'boardId'],
         mounted() {
-            // this.$store.dispatch('getTasks', this.$route.params.id)
+            this.$store.dispatch('getComments', { taskId: this.taskId, listId: this.listId, boardId: this.boardId })
         },
         methods: {
             openComments() {
@@ -96,8 +97,21 @@
 
 <style scoped>
     .open-comments {
-        color: red;
+        color: white;
         cursor: pointer;
         /* font-size: 100%;  */
+    }
+
+    .comment-container {
+        margin-left: 2rem;
+        margin-right: 2rem;
+        border: 1px solid black;
+        border-radius: 5px;
+    }
+
+    .comments {
+        margin: 2rem;
+        border: 1px solid black;
+        border-radius: 5px;
     }
 </style>
