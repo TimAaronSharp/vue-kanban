@@ -10,7 +10,7 @@
                 <div v-if="description">
                     <p class="list-text-color">Description: {{description}}</p>
                 </div>
-                <button class="btn-info btn-xs margin" @click="toggleTaskForm">New Task</button>
+                <button class="btn-success btn-xs margin" @click="toggleTaskForm">New Task</button>
                 <div class="create-task" v-if="showAddTaskForm">
                     <form @submit.prevent="createTask">
                         <div class="form-group">
@@ -120,7 +120,7 @@
 
     .fa-trash {
         float: right;
-        color: white;
+        color: rgb(235, 15, 15);
     }
 
     .inline {

@@ -2,7 +2,7 @@
     <draggable :options="{group: 'tasks'}" @end ="moveTaskToDifferentList(lists[this._id])">
         <div class="comment-container">
             <div class="tasks open-comments">
-                <p @click="commentsSeen = !commentsSeen">Task: {{name}}
+                <p @click="commentsSeen = !commentsSeen"><b>Task: </b>{{name}}
                     <i class="fa fa-ban" @click="removeTask"></i>
                     <div class="comments" v-if="commentsSeen" v-for="comment in comments">
                         <p>{{comment.description}}
@@ -12,7 +12,7 @@
                 </p>
             </div>
 
-            <p class="add-comment" @click="toggleCommentForm">Add Comments</p>
+            <p class="add-comment" @click="toggleCommentForm">Add Comments <span class="fa fa-plus"></span> </p>
             <div class="commentForm" v-if="showCommentForm">
                 <!-- <div class="cformHead">
                 <h4>New Comment</h4>
@@ -110,6 +110,10 @@
     .fa-ban {
         color: red;
         float: right;
+    }
+    .fa-plus {
+        color: rgb(13, 173, 26);
+    
     }
 
     .open-comments {

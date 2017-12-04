@@ -5,7 +5,7 @@
       <div class="boardheader">
         <h2>{{board.name}}</h2>
         <h4 class="bDesc">Description: {{board.description}}</h4>
-        <button class="btn-info" @click="toggleListForm">New List</button>
+        <button class="btn-success" @click="toggleListForm">New List</button>
       </div>
     </div>
     <div class="createList" v-if="showAddListForm">
@@ -81,8 +81,6 @@
     display: inline block;
     width: 30rem;
     padding: 1rem;
-
-
   }
   .boardHeaderC{
     display: flex;
