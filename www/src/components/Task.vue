@@ -3,7 +3,7 @@
         <div class="comment-container">
             <div class="tasks open-comments">
                 <p class="taskTitle" @click="commentsSeen = !commentsSeen"><b>Task: </b>{{name}}
-                    <i class="fa fa-ban" @click="removeTask"></i>
+                    <i class="fa fa-trash float" @click="removeTask"></i>
                     <div class="comments" v-if="commentsSeen" v-for="comment in comments">
                         <p>{{comment.description}}
                             <i class="fa fa-minus" @click="removeComment(comment._id)"></i>
@@ -124,7 +124,12 @@
     .fa-minus {
         color: red;
     }
-
+    .fa-trash:hover{
+        color: rgb(255, 137, 137);
+    }
+    .fa-minus:hover{
+        color: rgb(255, 137, 137);
+    }
     .comment-container {
         margin-left: 2rem;
         margin-right: 2rem;
@@ -153,6 +158,9 @@
         background: rgb(247, 250, 247);
         word-wrap: normal;
         padding-top: .5rem;
+    }
+    .float{
+        float: right;
     }
 
     /* .tasks{
