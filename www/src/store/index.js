@@ -29,8 +29,8 @@ var store = new vuex.Store({
   mutations: {
     setUser(state, data) {
       state.user = data
-      console.log('setUser: ', data)
-      console.log("User: ", state.user)
+      // console.log('setUser: ', data)
+      // console.log("User: ", state.user)
     },
     setBoards(state, data) {
       state.boards = data
@@ -94,9 +94,6 @@ var store = new vuex.Store({
     },
     //^^^^^^^^^^^^^^BOARDS^^^^^^^^^^^^^^^^^//
 
-
-
-
     //-------------LISTS-------------------//
     getLists({ commit, dispatch }, id) {
       api('boards/' + id + '/lists')
@@ -127,8 +124,6 @@ var store = new vuex.Store({
     },
     //^^^^^^^^^^^^^LISTS^^^^^^^^^^^^^^^^^^//
 
-
-
     //-------------TASKS-----------------//
     getTasks({ commit, dispatch }, payload) {
       api('boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks')
@@ -139,16 +134,6 @@ var store = new vuex.Store({
           commit('handleError', err)
         })
     },
-    // createTask({ commit, dispatch }, payload) {
-    //   // payload.newTask.listId = payload.listId
-    //   api.post('tasks', payload.newTask)
-    //     .then(res => {
-    //       dispatch('getTasks', {listId:payload.listId, boardId:payload.boardId })
-    //     })
-    //     .catch(err => {
-    //       commit('handleError', err)
-    //     })
-    // },
     createTask({ commit, dispatch }, payload) {
       api.post('/tasks', payload.task)
         .then(res => {
@@ -166,7 +151,6 @@ var store = new vuex.Store({
         .then(res => {
           dispatch('getTasks', payload)
           dispatch('getTasks', { listId: payload.oldListId, boardId: payload.boardId })
-          //getTasks?
         })
         .catch(err => {
           commit('handleError', err)
@@ -183,9 +167,6 @@ var store = new vuex.Store({
     },
     //^^^^^^^^^^^^^TASKS^^^^^^^^^^^^^^^^^//
 
-
-
-    // 'boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/' + payload.taskId + 
     //------------COMMENTS--------------//
     getComments({ commit, dispatch }, payload) {
       api('boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/' + payload.taskId + '/comments')
@@ -218,8 +199,6 @@ var store = new vuex.Store({
     },
     //^^^^^^^^^^^COMMENTS^^^^^^^^^^^^^^//
 
-
-
     //---------LOGIN/REGISTER/LOGOUT-----------//
     userLogin({ commit, dispatch }, login) {
       auth.post('login', login)
@@ -245,9 +224,6 @@ var store = new vuex.Store({
     authenticate({ commit, dispatch }) {
       auth('authenticate')
         .then(res => {
-          // if (!res.data.data) {
-          //   router.push({ name: "Login" })
-          // }
           commit('setUser', res.data.data)
           router.push({ name: 'Boards' })
         })
@@ -258,12 +234,11 @@ var store = new vuex.Store({
     logout({ commit, dispatch }, user) {
       auth.delete('logout')
         .then(res => {
-          console.log(res)
+          // console.log(res)
           dispatch('authenticate')
-          // router.push({ name: 'Login' })
         })
         .catch(err => {
-          console.log(err)
+          // console.log(err)
           res.status(401).send({ Error: err })
         })
     },

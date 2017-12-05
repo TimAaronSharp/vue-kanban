@@ -49,7 +49,7 @@
         this.toggleListForm()
       },
       toggleListForm() {
-        debugger
+        
         this.showAddListForm = !this.showAddListForm
       }
     },

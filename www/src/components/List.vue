@@ -64,7 +64,7 @@
                 this.$store.dispatch('removeList', { listId: listId, boardId: this.boardId })
             },
             createTask() {
-                debugger
+                
                 this.task.order = this.$store.state.activeTasks[this.listId].length
                 this.$store.dispatch('createTask', { task: this.task })
                 this.task = {

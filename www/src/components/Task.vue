@@ -65,7 +65,7 @@
                 this.$store.dispatch('getComments', { taskId: this.taskId, listId: this.listId, boardId: this.boardId })
             },
             moveTaskToDifferentList(newListId) {
-                debugger
+                
                 this.$store.dispatch('moveTaskToDifferentList', { taskId: this.taskId, boardId: this.boardId, oldListId: this.listId, listId: this.formOption })
             },
             newComment() {
