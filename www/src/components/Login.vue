@@ -53,7 +53,7 @@
                             <span class="sr-only">Close</span>
                         </button>
                         <h4 class="modal-title" id="myModalLabel">
-                            User Login
+                            User Register
                         </h4>
                     </div>
                     <div class="modal-body">
@@ -87,7 +87,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
-                                    <button @click="userRegister" data-dismiss="modal" class="btn btn-default">Sign in</button>
+                                    <button @click="userRegister" data-dismiss="modal" class="btn btn-default">Register Me</button>
                                 </div>
                             </div>
                         </form>
