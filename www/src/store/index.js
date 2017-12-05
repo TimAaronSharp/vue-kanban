@@ -39,27 +39,20 @@ var store = new vuex.Store({
       state.error = err
     },
     setActiveBoard(state, payload) {
-
-      // vue.set(state.activeBoard, payload, payload.name)
       state.activeBoard = payload
-      console.log('the active board is: ', state.activeBoard)
     },
     setActiveLists(state, lists) {
       state.activeLists = lists
     },
     setActiveTasks(state, payload) {
       vue.set(state.activeTasks, payload.listId, payload.task)
-      console.log('activeTasks: ', state.activeTasks)
     },
     setActiveComments(state, payload) {
       vue.set(state.activeComments, payload.taskId, payload.comment)
-      console.log('activeComments: ', state.activeComments)
     }
   },
   actions: {
     //when writing your auth routes (login, logout, register) be sure to use auth instead of api for the posts//
-
-
 
     //--------BOARDS-----------//
     getBoards({ commit, dispatch }) {
@@ -72,7 +65,6 @@ var store = new vuex.Store({
         })
     },
     getBoard({ commit, dispatch }, payload) {
-
       api('boards/' + payload.boardId)
         .then(res => {
           commit('setActiveBoard', res.data.data)
@@ -158,7 +150,6 @@ var store = new vuex.Store({
     //     })
     // },
     createTask({ commit, dispatch }, payload) {
-      debugger
       api.post('/tasks', payload.task)
         .then(res => {
           dispatch('getTasks', payload.task)
@@ -233,7 +224,6 @@ var store = new vuex.Store({
     userLogin({ commit, dispatch }, login) {
       auth.post('login', login)
         .then(res => {
-          console.log(res)
           commit('setUser', res.data.data)
           router.push({ name: 'Boards' })
         })
@@ -244,8 +234,7 @@ var store = new vuex.Store({
     userRegister({ commit, dispatch }, register) {
       auth.post('register', register)
         .then(res => {
-          console.log(res)
-          //dispatch('getBoards')
+          commit('setUser', res.data.data)
           router.push({ name: 'Boards' })
         })
         .catch(err => {
@@ -254,13 +243,11 @@ var store = new vuex.Store({
         })
     },
     authenticate({ commit, dispatch }) {
-
       auth('authenticate')
         .then(res => {
           // if (!res.data.data) {
           //   router.push({ name: "Login" })
           // }
-          console.log(res)
           commit('setUser', res.data.data)
           router.push({ name: 'Boards' })
         })

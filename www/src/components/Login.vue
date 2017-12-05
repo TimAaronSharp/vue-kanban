@@ -5,90 +5,48 @@
         </div>
         <div class="top container">
             <div class="loginbox">
-
                 <div class='login'>
                     <div class="header container">
                         <h3>Login:</h3>
                     </div>
-
-                    <form @submit.prevent="userLogin" class="form-horizontal" role="form">
+                    <form @submit.prevent="userLogin" class="form-horizontal">
                         <div class="form-group">
-                            <label class="" for="inputEmail3">Email</label>
-                            <div class="">
+                            <label for="inputEmail">Email</label>
+                            <div>
                                 <input type="email" class="" id="inputEmail3" placeholder="Email" size="35" v-model="login.email" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="" for="inputPassword3">Password</label>
-                            <div class="">
-                                <input type="password" class="" id="inputPassword3" placeholder="Password" size="35" v-model="login.password" />
+                            <label for="inputPassword">Password</label>
+                            <div>
+                                <input type="password" class="" id="inputPassword" placeholder="Password" size="35" v-model="login.password" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class=" col-sm-10">
+                            <div class="col-sm-10">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" /> Remember me
+                                        <input type="checkbox"/> Remember me
                                     </label>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class=" col-sm-10">
-                                <button type="submit" class="btn btn-default">Sign in</button>
+                            <div class=" col-sm-12">
+                                <button type="submit" class="btn btn-default text-center">Sign in</button>
                             </div>
                         </div>
                         <div class="registerhere">
-                            <a @click="seen = !seen">Don't have an account? Register here.</a>
+                            <p class="action" data-toggle="modal" data-target="#myModalHorizontal">Don't have an account? Register here.</p>
                         </div>
                     </form>
                 </div>
-                <div class="register" v-if="seen">
-
-                    <div class="regheader container">
-                        <h3>Register:</h3>
-                    </div>
-
-                    <div class="form">
-                        <form @submit.prevent="userRegister" class="form-horizontal" role="form">
-                            <div class="form-group">
-                                <label class="" for="inputEmail3">Email</label>
-                                <div class="">
-                                    <input type="email" class="" size="35" name="inputEmail3" placeholder="Email" v-model="register.email" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="" for="inputName3">Name</label>
-                                <div class="">
-                                    <input type="name" size="35" class="" name="inputName3" placeholder="Password" v-model="register.name" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="" for="inputPassword3">Password</label>
-                                <div class="">
-                                    <input type="password" size="35" class="" name="inputPassword3" placeholder="Password" v-model="register.password" />
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="submit" class="btn btn-default">Register</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
             </div>
         </div>
-        <!-- <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalHorizontal">
-            Launch Horizontal Form
-        </button>
-
-        
         <div class="modal fade" id="myModalHorizontal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                   
+
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">
                             <span aria-hidden="true">&times;</span>
@@ -98,42 +56,45 @@
                             User Login
                         </h4>
                     </div>
-
-                    
                     <div class="modal-body">
-
-                        <form @submit.prevent="userLogin" class="form-horizontal" role="form">
+                        <form class="form-horizontal" role="form">
                             <div class="form-group">
-                                <label class="col-sm-2 control-label" for="inputEmail3">Email</label>
+                                <label class="col-sm-2 control-label" for="inputName">Full Name</label>
                                 <div class="col-sm-10">
-                                    <input type="email" class="form-control" id="inputEmail3" placeholder="Email" v-model="login.email"/>
+                                    <input type="text" class="form-control" id="inputName" placeholder="Name" v-model="register.name" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label" for="inputPassword3">Password</label>
+                                <label class="col-sm-2 control-label" for="inputEmail">Email</label>
                                 <div class="col-sm-10">
-                                    <input type="password" class="form-control" id="inputPassword3" placeholder="Password" v-model="login.password" />
+                                    <input type="email" class="form-control" id="inputEmail" placeholder="Email" v-model="register.email" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="inputPassword">Password</label>
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control" id="inputPassword" placeholder="Password" v-model="register.password" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" /> Remember me
+                                            <input type="checkbox"/> Remember me
                                         </label>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="submit" class="btn btn-default">Sign in</button>
+                                    <button @click="userRegister" data-dismiss="modal" class="btn btn-default">Sign in</button>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
     </div>
 
 
@@ -145,7 +106,6 @@
         name: 'login',
         data() {
             return {
-                seen: false,
                 register: {
 
                 },
@@ -162,8 +122,10 @@
             userRegister() {
                 this.$store.dispatch('userRegister', this.register)
             },
+            toggleForms() {
+                this.showForm = !this.showForm
+            },
             modalToggle() {
-
             }
         }
 
@@ -223,6 +185,10 @@
     .top {
         display: flex;
         justify-content: center;
+    }
+    .action{
+        cursor: pointer;
+        
     }
 </style>
 

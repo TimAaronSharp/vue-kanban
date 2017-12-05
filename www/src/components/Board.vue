@@ -4,7 +4,7 @@
 
       <div class="boardheader">
         <h2>{{board.name}}</h2>
-        <h4 class="bDesc">Description: {{board.description}}</h4>
+        <h4 v-if="board.description" class="board-description">Description: {{board.description}}</h4>
         <button class="btn-success" @click="toggleListForm">New List</button>
       </div>
     </div>
@@ -71,7 +71,7 @@
   .dalists {
     margin: 1rem;
   }
-  .bDesc{
+  .board-description{
     color: rgb(233, 233, 233);
   }
   .boardheader {
