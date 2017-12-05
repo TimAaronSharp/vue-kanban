@@ -79,7 +79,6 @@
     border-radius: 15px;
     color: rgb(250, 248, 248);
     display: inline block;
-    width: 30rem;
     padding: 1rem;
   }
   .boardHeaderC{
