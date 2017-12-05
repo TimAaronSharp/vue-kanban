@@ -115,7 +115,6 @@
         color: rgb(13, 173, 26);
     
     }
-
     .open-comments {
         /* color: white; */
         cursor: pointer;
@@ -131,7 +130,8 @@
         margin-right: 2rem;
         border: 1px solid black;
         border-radius: 5px;
-        background: pink;
+        /* background: pink; */
+        background: rgb(252, 185, 185);
         padding: 1rem;
     }
 
