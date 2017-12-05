@@ -144,6 +144,10 @@
     top: 10%;
     right:15%;
   }
+  .remove:hover{
+    color: rgb(252, 135, 135);
+    cursor: pointer;
+  }
 
   a {
     display: inline-block;

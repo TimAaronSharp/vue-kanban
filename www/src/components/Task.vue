@@ -27,12 +27,12 @@
                 </div>
             </div>
             <div class="the-lists">
-                <!-- <form @change="moveTaskToDifferentList">
+                <form @change="moveTaskToDifferentList">
                     <select name="select list" v-model="formOption">
                         <option disabled selected>Select List</option>
                         <option v-for="list in lists" :value="list._id">{{list.name}}</option>
                     </select>
-                </form> -->
+                </form>
             </div>
         </div>
     </draggable>
@@ -66,7 +66,7 @@
             },
             moveTaskToDifferentList(newListId) {
                 debugger
-                this.$store.dispatch('moveTaskToDifferentList', { taskId: this.taskId, boardId: this.boardId, oldListId: this.listId, newListId: newListId })
+                this.$store.dispatch('moveTaskToDifferentList', { taskId: this.taskId, boardId: this.boardId, oldListId: this.listId, listId: this.formOption })
             },
             newComment() {
                 this.$store.dispatch('newComment', { comment: this.comment })

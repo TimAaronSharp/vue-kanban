@@ -122,6 +122,9 @@
         float: right;
         color: rgb(235, 15, 15);
     }
+    .fa-trash:hover{
+       color: rgb(255, 155, 155);
+    }
 
     .inline {
         display: inline;
