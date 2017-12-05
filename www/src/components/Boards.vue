@@ -3,7 +3,7 @@
 <div class="boardsHeader container">
   <h1>{{user.name}}'s Boards</h1>
   <div class="header container-fluid">
-    <button @click="toggleBoradForm" class="btn-info">New Board</button>
+    <button @click="toggleBoradForm" class="btn-success">New Board</button>
     <button class="btn-danger" @click="userLogout">Logout</button>
   </div>
 </div>

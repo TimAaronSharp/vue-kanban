@@ -9,10 +9,10 @@
                             <i class="fa fa-minus" @click="removeComment(comment._id)"></i>
                         </p>
                     </div>
+                    <p class="add-comment" v-if="commentsSeen" @click="toggleCommentForm">Add Comment <span class="fa fa-plus"></span> </p>
                 </p>
             </div>
 
-            <p class="add-comment" @click="toggleCommentForm">Add Comments <span class="fa fa-plus"></span> </p>
             <div class="commentForm" v-if="showCommentForm">
                 <!-- <div class="cformHead">
                 <h4>New Comment</h4>
